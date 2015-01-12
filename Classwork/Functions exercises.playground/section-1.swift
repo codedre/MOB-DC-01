@@ -82,41 +82,41 @@ printFib()
 
 // TODO: Write a function that takes in a number and prints out whether it is prime, composite or neither.
 
-func math(num: Int) -> String{
- 
-    var prime = 0
-    var result: String = ""
-    
-    for var index = 2; index <= num; ++index {
-        if (num % index == 0) || (prime < 1){
-            prime += 1
-        }
-    }
-    if (num <= 1){
-        result = ("\(num) is neither a prime or composite number.")
-    } else if (prime <= 2){
-        result = ("\(num) is a prime number.")
-    } else if (prime > 2){
-        result = ("\(num) is a composite number.")
-    }
-    return result
-}
-
-math(15)
-
-
-// TODO: Write a function that prints out each of the first 20 fibonacci numbers and whether they are prime. (e.g. 0 is not prime or composite, 1 is prime, etc)
-
-func primeFib(){
-    var num: Int = 0, type = ""
-    for index in 1...20 {
-        type = math(fib(index))
-        println(type)
-    }
-    
-}
-
-primeFib()
+//func math(num: Int) -> String{
+// 
+//    var prime = 0
+//    var result: String = ""
+//    
+//    for var index = 2; index <= num; ++index {
+//        if (num % index == 0) || (prime < 1){
+//            prime += 1
+//        }
+//    }
+//    if (num <= 1){
+//        result = ("\(num) is neither a prime or composite number.")
+//    } else if (prime <= 2){
+//        result = ("\(num) is a prime number.")
+//    } else if (prime > 2){
+//        result = ("\(num) is a composite number.")
+//    }
+//    return result
+//}
+//
+//math(15)
+//
+//
+//// TODO: Write a function that prints out each of the first 20 fibonacci numbers and whether they are prime. (e.g. 0 is not prime or composite, 1 is prime, etc)
+//
+//func primeFib(){
+//    var num: Int = 0, type = ""
+//    for index in 1...20 {
+//        type = math(fib(index))
+//        println(type)
+//    }
+//    
+//}
+//
+//primeFib()
 
 
 // TODO: Write a function that takes in two numbers, a bill amount and an optional tip percentage (represented as a float, e.g. .2 = 20% tip). Return a tuple with the total bill amount and the tip amount (if included).
@@ -148,12 +148,74 @@ func funStrings(text: String) -> String {
     return(inReverse)
 }
 
-funStrings("Andre")
+var print = funStrings("Andre")
+println("\(print)")
 
 // BONUS TODO: Write a function that takes in an array of strings and a search term string. Return a boolean indicating whether the search term string exists in the array.
 
+func advStrings(text:[String], search: String) -> Bool {
+
+    for var i = 0; i < text.count; ++i {
+        if (search == text[i]){
+            return true
+            break
+        }
+    }
+    return false
+}
+
+advStrings(["red", "blue", "green", "yellow"], "red")
+
+
 // BONUS TODO: Write a function that accepts a string and returns a boolean indicating whether a string is a palindrome (reads the same backwards or forwards).
 
-// BONUS TODO: Write a function that takes in two strings and returns a boolean indicating whether the two strings
+func palindrome(text: String) -> Bool {
+    var inReverse = ""
+    
+    for letter in text {
+        println(letter)
+        inReverse = "\(letter)" + inReverse
+    }
+    if (inReverse == text){
+        return true
+    }else{
+        return false
+    }
+}
+
+palindrome("eve")
+
+// BONUS TODO: Write a function that takes in two strings and returns a boolean indicating whether the two strings are equal
+func evenStrings(firstLine: String, secondLine: String) -> Bool {
+    if (firstLine == secondLine){
+        return true
+    }else {
+        return false
+    }
+}
+
+evenStrings("This is my line", "This is my line")
 
 // BONUS TODO: Write a function that accepts two parameters, a string and a function that accepts a string and returns a string. Print the result of passing the string into the function 10 times.
+
+
+//func lastOne("The has run ", me(name:String){
+func me(text: String) -> String {
+    for index in 1...10 {
+        println("\(index) times")
+    }
+    return ("\(index) times")
+}
+    
+//}
+
+
+
+
+
+
+
+
+
+
+
