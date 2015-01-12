@@ -58,7 +58,68 @@ if (number % 2 == 0){
     println("The number \(number) is odd")
 }
 
+// answers form class
+
+for i in 1...50 {
+    var multi = 7 * i - 1
+    println(multi)
+}
 
 
 
+for var i = 1; i < 50; ++i {
+    println(7*i-1)
+}
+
+
+
+if number % 2 == 0 && number != 0 {
+    println("This is an even number")
+}
+
+
+var fibNum = 9, current = 0, next = 1, result = 0
+
+for index in 0..<fibNum {
+    //current val is 3
+    //temp value becomes 3
+    let tempVar = current
+    //current value becomes next(5)
+    current = next
+    //next value becomes old current(temporoary) + new current(old next)
+    next = tempVar + current
+    result = tempVar
+    
+}
+
+println("Fib num is \(result)")
+
+println("Hello \(name), your name is \(countElements(name)) characters long!.")
+
+var sum = 0
+for i in 1...100 {
+    sum += Int(rand())
+    
+}
+
+println(sum)
+
+//Type cast
+//Int
+var tempString = "10"
+tempString.toInt()
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
