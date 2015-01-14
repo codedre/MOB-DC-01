@@ -82,55 +82,55 @@ printFib()
 
 // TODO: Write a function that takes in a number and prints out whether it is prime, composite or neither.
 
-//func math(num: Int) -> String{
-// 
-//    var prime = 0
-//    var result: String = ""
-//    
-//    for var index = 2; index <= num; ++index {
-//        if (num % index == 0) || (prime < 1){
-//            prime += 1
-//        }
-//    }
-//    if (num <= 1){
-//        result = ("\(num) is neither a prime or composite number.")
-//    } else if (prime <= 2){
-//        result = ("\(num) is a prime number.")
-//    } else if (prime > 2){
-//        result = ("\(num) is a composite number.")
-//    }
-//    return result
-//}
-//
-//math(15)
-//
-//
-//// TODO: Write a function that prints out each of the first 20 fibonacci numbers and whether they are prime. (e.g. 0 is not prime or composite, 1 is prime, etc)
-//
-//func primeFib(){
-//    var num: Int = 0, type = ""
-//    for index in 1...20 {
-//        type = math(fib(index))
-//        println(type)
-//    }
-//    
-//}
-//
-//primeFib()
+func math(num: Int) -> String{
+ 
+    var prime = 0
+    var result: String = ""
+    
+    for var index = 2; index <= num; ++index {
+        if (num % index == 0) || (prime < 1){
+            prime += 1
+        }
+    }
+    if (num <= 1){
+        result = ("\(num) is neither a prime or composite number.")
+    } else if (prime <= 2){
+        result = ("\(num) is a prime number.")
+    } else if (prime > 2){
+        result = ("\(num) is a composite number.")
+    }
+    return result
+}
+
+math(1)
+
+
+// TODO: Write a function that prints out each of the first 20 fibonacci numbers and whether they are prime. (e.g. 0 is not prime or composite, 1 is prime, etc)
+
+func primeFib(){
+    var num: Int = 0, type = ""
+    for index in 1...20 {
+        type = math(fib(index))
+        println(type)
+    }
+    
+}
+
+primeFib()
 
 
 // TODO: Write a function that takes in two numbers, a bill amount and an optional tip percentage (represented as a float, e.g. .2 = 20% tip). Return a tuple with the total bill amount and the tip amount (if included).
 
-func check(bill: Float, tip: Float?) -> (total:Float, tip:Float?){
+func check(bill: Float, tip: Float?) -> (total:Double, tip:Double?){
     var calc = bill
     if let numValue = tip {
         calc += (numValue * bill)
         
     }
-    return (calc,tip)
+    return (Double(calc),Double(tip!))
 }
 
-var myTab = check(10,nil)
+var myTab = check(10,0.2)
 myTab.total
 myTab.tip
 
@@ -158,7 +158,6 @@ func advStrings(text:[String], search: String) -> Bool {
     for var i = 0; i < text.count; ++i {
         if (search == text[i]){
             return true
-            break
         }
     }
     return false
@@ -201,10 +200,12 @@ evenStrings("This is my line", "This is my line")
 
 //func lastOne("The has run ", me(name:String){
 func me(text: String) -> String {
+    var sum = 0
     for index in 1...10 {
         println("\(index) times")
+        sum += index
     }
-    return ("\(index) times")
+    return ("\(sum) times")
 }
     
 //}
