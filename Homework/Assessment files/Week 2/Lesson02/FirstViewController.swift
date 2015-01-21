@@ -21,6 +21,7 @@ class FirstViewController: UIViewController {
     }
     
     /*TODO two: Connect the ‘name’ and ‘age’ text boxes to this class. Hook up the button to a NEW function (in addition to the function previously defined). That function must look at the string entered in the text box and print out “Hello {name}, you are {age} years old!"*/
+    // ******* This part is not complete
     
     @IBAction func displayNameAndAgeFromFields(sender: AnyObject) {
         
@@ -54,6 +55,9 @@ class FirstViewController: UIViewController {
     
     /*TODO four: Hook up the button to a NEW function (in additino to the three above). Print “you can drive” if the user is above 16 but below 18. It should print “You can drive and vote” if the user is above 18 but below 21. If the user is above 21, it should print “you can drive, vote and drink (but not at the same time!”.*/
     
+    // ****** One error here which applies to all situations where you are doing toInt() in this assessment (won't count this against you, just keep in mind for future reference). If user enters anything but a number in the age field the app crashes because you are unwrapping the optional (age) without checking if it has a value or if it's nil. This is a great place to conditionall unwrap the age optional.
+    // ****** ex: if let ageCheck = age {
+    // ****** now if age is not nil, you can use ageCheck to run the rest of your logic with the unwrapped value
     @IBAction func displayDetailedAgeSpecificMessage(sender: AnyObject) {
         var age = enterAgeField.text.toInt()
         
