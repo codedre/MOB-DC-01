@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -238,13 +239,13 @@
                                 <exclude reference="ap2-aH-UxC"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Cu1-39-MeF"/>
-                                <exclude reference="Zke-Um-Yqt"/>
-                                <exclude reference="c7g-Y2-7e5"/>
-                                <exclude reference="mEr-Qq-hHU"/>
                                 <exclude reference="6HM-sL-U0J"/>
                                 <exclude reference="8pV-oR-O43"/>
                                 <exclude reference="Fwu-4R-u9V"/>
+                                <exclude reference="mEr-Qq-hHU"/>
+                                <exclude reference="Cu1-39-MeF"/>
+                                <exclude reference="Zke-Um-Yqt"/>
+                                <exclude reference="c7g-Y2-7e5"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -268,13 +269,13 @@
                                 <include reference="ap2-aH-UxC"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Cu1-39-MeF"/>
-                                <include reference="Zke-Um-Yqt"/>
-                                <include reference="c7g-Y2-7e5"/>
-                                <include reference="mEr-Qq-hHU"/>
                                 <include reference="6HM-sL-U0J"/>
                                 <include reference="8pV-oR-O43"/>
                                 <include reference="Fwu-4R-u9V"/>
+                                <include reference="mEr-Qq-hHU"/>
+                                <include reference="Cu1-39-MeF"/>
+                                <include reference="Zke-Um-Yqt"/>
+                                <include reference="c7g-Y2-7e5"/>
                             </mask>
                         </variation>
                         <connections>
