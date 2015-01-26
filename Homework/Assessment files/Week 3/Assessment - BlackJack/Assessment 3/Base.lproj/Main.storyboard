@@ -39,7 +39,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0013089_dsg-playing-card-deck-54-card-deck.png" translatesAutoresizingMaskIntoConstraints="NO" id="uo9-BF-Qok">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="-15" y="0.0" width="292" height="169"/>
+                                            <rect key="frame" x="-5" y="-8" width="292" height="169"/>
                                         </variation>
                                     </imageView>
                                 </subviews>
@@ -291,6 +291,7 @@
                         <outlet property="endGameResults" destination="cPn-U8-1fE" id="O3T-yw-hB8"/>
                         <outlet property="enterInitialPotAmount" destination="NV0-ch-wza" id="JUe-9U-ty2"/>
                         <outlet property="moneyPot" destination="1MJ-b3-LpQ" id="Rce-kw-0p5"/>
+                        <outlet property="playButton" destination="3kz-6e-el2" id="NZz-mj-0nL"/>
                         <outlet property="playersHandLabel" destination="KXZ-XU-Akz" id="BC3-hM-vjU"/>
                         <outlet property="playersHandResult" destination="xcX-wa-iK7" id="6QU-Xk-XiS"/>
                         <outlet property="redBox" destination="VLj-XE-fcY" id="Vv1-Uh-GQ7"/>

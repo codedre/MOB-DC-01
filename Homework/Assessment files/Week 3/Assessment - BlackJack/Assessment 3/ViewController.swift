@@ -37,6 +37,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var enterInitialPotAmount: UITextField!
     @IBOutlet weak var betAmount: UITextField!
     
+    @IBOutlet weak var playButton: UIButton!
     
     
     //hides a lot of stuff
@@ -55,6 +56,7 @@ class ViewController: UIViewController {
     func endGame(){
         self.redBox.hidden = true
         hideResults(false)
+        playButton.hidden = false
     }
     
     //When app loads some objects are hidden
@@ -89,11 +91,14 @@ class ViewController: UIViewController {
         if newGame.newPlayer.score == 21 && newGame.cpu.score == 21 {
             endGame()
             resultsLabel.text = "Its a Tie! But the house always wins!"
+            playButton.hidden = true
             
         } else if newGame.newPlayer.score == 21 {
             endGame()
             resultsLabel.text = "You Win"
+            playButton.hidden = true
         }
+         playButton.hidden = true
     }
     
     // When the green box is double tapped a new card will be dealt and players score is updated
