@@ -45,3 +45,19 @@ for i in myArray {
         println("the value is \(i)")
     }
 }
+
+
+
+//TableView 
+//Built to work with arrays. Assign each element to an array value
+//always linear
+//size.count
+//how many sections
+//elements
+
+
+
+
+
+//Protocols 
+//
