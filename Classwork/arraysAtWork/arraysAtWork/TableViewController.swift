@@ -8,9 +8,21 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, NewtodoItem {
 
     var toDoList = ["Get up", "Shower", "Brush Teeth", "Comb hair", "Put on pants"]
+    
+    func addNewItem(newItem: String) {
+        self.toDoList.append(newItem)
+    }
+    
+    @IBAction func addNewListItem(sender: AnyObject) {
+        let addVC = self.storyboard?.instantiateViewControllerWithIdentifier("addVC") as ViewController
+        
+        addVC.delegate = self
+        
+        self.presentViewController(addVC, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +47,6 @@ class TableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CellIdentifier") as? UITableViewCell ?? UITableViewCell(style: .Default, reuseIdentifier: "CellIdentifier")
         // Sets each cell to equal each item in the array
-        if indexPath.row % 2 == 0 {
-            tableView.backgroundColor = UIColor.purpleColor()
-            cell.textLabel?.textColor = UIColor.redColor()
-            cell.textLabel?.textAlignment = NSTextAlignment.Right
-        }
         
         cell.textLabel?.text = self.toDoList[indexPath.row]
         return cell

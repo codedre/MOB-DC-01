@@ -47,9 +47,6 @@ class TableViewController: UITableViewController, Campus {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CellIdentifier") as? UITableViewCell ?? UITableViewCell(style: .Default, reuseIdentifier: "CellIdentifier")
         // Sets each cell to equal each item in the array
-        if indexPath.row % 2 == 0 {
-            cell.backgroundColor = UIColor.blueColor()
-        }
         
         cell.textLabel?.text = self.gaCampuses[indexPath.row]
         return cell

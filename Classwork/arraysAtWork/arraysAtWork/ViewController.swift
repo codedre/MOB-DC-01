@@ -8,21 +8,26 @@
 
 import UIKit
 
+protocol NewtodoItem {
+    func addNewItem (newItem: String)
+}
+
 class ViewController: UIViewController {
     
+    var delegate: NewtodoItem?
+    
     @IBOutlet weak var toDoInputField: UITextField!
-    var toDoList = ["Get up", "Shower", "Brush Teeth", "Comb hair", "Put on pants"]
+    
     
     
     @IBAction func appendToArray(sender: AnyObject) {
-        toDoList.append(toDoInputField.text)
-        for i in toDoList {
-            println(i)
-        }   
+        
+        self.delegate?.addNewItem(self.toDoInputField.text)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        toDoList.append("Put on shirt")
         
         
     }
