@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Save_to_Documents" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9xZ-Vi-FkH">
+                                <rect key="frame" x="113" y="50" width="375" height="212"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="212" id="BPy-B5-bbO"/>
+                                    <constraint firstAttribute="width" constant="375" id="tbJ-a1-hoh"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7r-eJ-L5M">
+                                <rect key="frame" x="252" y="280" width="96" height="50"/>
+                                <color key="backgroundColor" red="0.81176470590000005" green="0.81568627449999997" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="P1b-29-X6k"/>
+                                    <constraint firstAttribute="width" constant="96" id="pne-iG-qvu"/>
+                                </constraints>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveContent:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="QL0-tI-l4V"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyf-M5-NTc">
+                                <rect key="frame" x="257" y="381" width="86" height="59"/>
+                                <color key="backgroundColor" red="0.81176470590000005" green="0.81568627449999997" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="P9g-oX-VEu"/>
+                                    <constraint firstAttribute="width" constant="86" id="Sey-QQ-yKW"/>
+                                </constraints>
+                                <state key="normal" title="Load">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loadContent:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="imy-38-92M"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="eyf-M5-NTc" secondAttribute="centerY" constant="-110.5" id="IuY-3M-Mek"/>
+                            <constraint firstAttribute="centerX" secondItem="9xZ-Vi-FkH" secondAttribute="centerX" constant="-0.5" id="QBv-9i-CmI"/>
+                            <constraint firstItem="k7r-eJ-L5M" firstAttribute="top" secondItem="9xZ-Vi-FkH" secondAttribute="bottom" constant="18" id="YEe-Yc-pfv"/>
+                            <constraint firstItem="eyf-M5-NTc" firstAttribute="top" secondItem="k7r-eJ-L5M" secondAttribute="bottom" constant="51" id="afz-XX-YOC"/>
+                            <constraint firstAttribute="centerY" secondItem="9xZ-Vi-FkH" secondAttribute="centerY" constant="144" id="eDL-nh-w4B"/>
+                            <constraint firstAttribute="centerX" secondItem="eyf-M5-NTc" secondAttribute="centerX" id="hMO-bH-4hX"/>
+                            <constraint firstAttribute="centerX" secondItem="k7r-eJ-L5M" secondAttribute="centerX" id="ih2-du-nPH"/>
+                            <constraint firstAttribute="centerY" secondItem="k7r-eJ-L5M" secondAttribute="centerY" constant="-5" id="xJJ-so-ngn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="9xZ-Vi-FkH" id="PC9-3P-vP8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
