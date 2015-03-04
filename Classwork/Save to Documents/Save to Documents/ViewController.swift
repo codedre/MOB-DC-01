@@ -45,7 +45,7 @@ class ViewController: UIViewController {
             let mySavedPath = documentsFolder + "/savedText.txt"
             
             // Access our file from the path we defined above
-            var stringToLoad: NSString? = NSString(contentsOfFile: mySavedPath, encoding: NSUTF32StringEncoding, error: nil)
+            var stringToLoad: NSString? = NSString(contentsOfFile: mySavedPath, encoding: NSUTF32StringEncoding, error: nil)`
         
             // If the file exists, run the blck below
             if let loadedContent = stringToLoad  {
