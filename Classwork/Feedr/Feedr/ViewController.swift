@@ -7,13 +7,34 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
     var tempData = ["Ena's tail is apperantly OK", "MOB Class is awesome", "Pigs sighted flying"]
     
+    var json: JSON?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // connecting to site
+        if let url = NSURL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json"){
+            let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data, response, error) -> Void in
+                
+//                if let jsonDict: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) {
+//                    self.json = jsonDict as? NSDictionary
+//                }
+                
+                let newJsonDict = JSON(data: data)
+                self.json = newJsonDict
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
+                })
+            })
+            task.resume()
+        }
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -21,7 +42,16 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.tempData.count
+        if let jsonData =  self.json {
+//            if let data = jsonData["data"] as? NSDictionary {
+//                if let children = data["children"] as? NSArray {
+//                    return children.count
+//                }
+//            }
+            return jsonData["data"]["children"].count
+        }
+        
+        return 0 // Fallback incase data comes back with error
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -29,14 +59,47 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         if cell == nil  {
             cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
         }
-        cell.textLabel?.text = self.tempData[indexPath.row]
+        
+        if let jsonDict = self.json {
+            cell.textLabel?.text = jsonDict["data"]["children"][indexPath.row]["data"]["title"].string
+//            if let data = jsonDict["data"] as? NSDictionary {
+//                if let children = data["children"] as? NSArray {
+//                    if let child = children[indexPath.row] as? NSDictionary {
+//                        if let childData = child["data"] as? NSDictionary {
+//                            if let title = childData["title"] as? NSString {
+//                                cell.textLabel?.text = title
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+        }
+        
         return cell
     }
     
     //on click
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var url = NSURL(string: "http://tedi.io")
-        performSegueWithIdentifier("web", sender: NSURLRequest(URL: url!))
+        
+        if let jsonDict = self.json {
+            var permalink = jsonDict["data"]["children"][indexPath.row]["data"]["permalink"].string
+            
+            var url = NSURL(string: "http://reddit.com" + permalink!)
+            performSegueWithIdentifier("web", sender: NSURLRequest(URL: url!))
+//            if let data = jsonDict["data"] as? NSDictionary {
+//                if let children = data["children"] as? NSArray {
+//                    if let child = children[indexPath.row] as? NSDictionary {
+//                        if let childData = child["data"] as? NSDictionary {
+//                            if let permalink = childData["permalink"] as? NSString {
+//                                var url = NSURL(string: "http://reddit.com" + permalink)
+//                                performSegueWithIdentifier("web", sender: NSURLRequest(URL: url!))
+//
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
