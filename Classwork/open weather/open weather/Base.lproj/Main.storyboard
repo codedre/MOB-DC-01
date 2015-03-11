@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="open_weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading data..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPy-am-du3">
+                                <rect key="frame" x="242" y="74" width="115.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yui-q2-X0o">
+                                <rect key="frame" x="253" y="174" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="Qzj-VY-xKB"/>
+                                    <constraint firstAttribute="height" constant="30" id="VIv-t5-Lb1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JeH-UN-MOT">
+                                <rect key="frame" x="390" y="174" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="FHI-aW-6wj"/>
+                                    <constraint firstAttribute="height" constant="30" id="qxm-B9-B4Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7WO-ja-XOZ">
+                                <rect key="frame" x="244" y="285" width="110" height="30"/>
+                                <state key="normal" title="Update weather">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateWeather:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="hmP-Zf-Cwi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading data..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVZ-eM-vmY">
+                                <rect key="frame" x="241" y="115" width="116" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="JeH-UN-MOT" secondAttribute="trailing" constant="97" id="1fo-Rn-ivR"/>
+                            <constraint firstAttribute="centerY" secondItem="hPy-am-du3" secondAttribute="centerY" constant="98.5" id="FZK-cn-BZb"/>
+                            <constraint firstAttribute="centerX" secondItem="hPy-am-du3" secondAttribute="centerX" id="LkT-fr-cgk"/>
+                            <constraint firstAttribute="centerX" secondItem="hPy-am-du3" secondAttribute="centerX" id="Lpb-0u-zAf"/>
+                            <constraint firstItem="JeH-UN-MOT" firstAttribute="leading" secondItem="Yui-q2-X0o" secondAttribute="trailing" constant="40" id="TnP-n3-hAi"/>
+                            <constraint firstAttribute="centerY" secondItem="7WO-ja-XOZ" secondAttribute="centerY" id="Um3-60-49L"/>
+                            <constraint firstAttribute="centerX" secondItem="hPy-am-du3" secondAttribute="centerX" id="cIq-JN-kER"/>
+                            <constraint firstAttribute="centerX" secondItem="VVZ-eM-vmY" secondAttribute="centerX" constant="1" id="dOP-ID-Oty"/>
+                            <constraint firstItem="JeH-UN-MOT" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="154" id="efi-yr-zhf"/>
+                            <constraint firstItem="Yui-q2-X0o" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" priority="750" constant="84" id="gxM-Sb-wdv"/>
+                            <constraint firstAttribute="centerY" secondItem="hPy-am-du3" secondAttribute="centerY" constant="215.5" id="kaG-Ou-NZM"/>
+                            <constraint firstItem="Yui-q2-X0o" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="154" id="nNs-RG-AAk"/>
+                            <constraint firstAttribute="centerY" secondItem="VVZ-eM-vmY" secondAttribute="centerY" constant="174.5" id="oEe-uD-wsI"/>
+                            <constraint firstAttribute="centerX" secondItem="7WO-ja-XOZ" secondAttribute="centerX" constant="1" id="oHt-i7-Bmf"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FZK-cn-BZb"/>
+                                <exclude reference="LkT-fr-cgk"/>
+                                <exclude reference="Lpb-0u-zAf"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="cityTextField" destination="Yui-q2-X0o" id="amA-sX-jho"/>
+                        <outlet property="stateTextField" destination="JeH-UN-MOT" id="5Qp-wC-GZe"/>
+                        <outlet property="temperatureLabel" destination="VVZ-eM-vmY" id="Ezf-7H-qfQ"/>
+                        <outlet property="weatherDescription" destination="hPy-am-du3" id="Eq5-oZ-sEG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

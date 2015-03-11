@@ -1,0 +1,43 @@
+PODS:
+  - Alamofire (1.1.4)
+  - Haneke (1.0.1)
+  - Snap (0.0.6)
+  - SwiftyJSON (2.1.3)
+
+DEPENDENCIES:
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`)
+  - Haneke (from `https://github.com/Haneke/Haneke.git`)
+  - Snap (from `https://github.com/Masonry/Snap.git`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :git: https://github.com/Alamofire/Alamofire.git
+  Haneke:
+    :git: https://github.com/Haneke/Haneke.git
+  Snap:
+    :git: https://github.com/Masonry/Snap.git
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 1d9932f6359c27879d0af7646c3a389884cc310f
+    :git: https://github.com/Alamofire/Alamofire.git
+  Haneke:
+    :commit: 5a7f718bf7f739ca2c77ed3307967075ef1615b5
+    :git: https://github.com/Haneke/Haneke.git
+  Snap:
+    :commit: faf7d43aaf6c46d11d1b1cdbb9ff58392ece6e52
+    :git: https://github.com/Masonry/Snap.git
+  SwiftyJSON:
+    :commit: 02878562cc779fda8e86be3211050f03228a01d6
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
+  Haneke: d60be8b96b228633b24708dd153169d6849d6f78
+  Snap: c691705e45df9cae55cebedde52013683588db52
+  SwiftyJSON: a561c2a840121085bec8a2dfeac97a360fc66901
+
+COCOAPODS: 0.36.0.rc.1
