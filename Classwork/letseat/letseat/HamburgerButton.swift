@@ -72,14 +72,14 @@ class HamburgerButton : UIButton {
         }
 
         self.top.anchorPoint = CGPointMake(28.0 / 30.0, 0.5)
-        self.top.position = CGPointMake(40, 18)
+        self.top.position = CGPointMake(40, -2)
 
-        self.middle.position = CGPointMake(27, 27)
+        self.middle.position = CGPointMake(27, 6)
         self.middle.strokeStart = hamburgerStrokeStart
         self.middle.strokeEnd = hamburgerStrokeEnd
 
         self.bottom.anchorPoint = CGPointMake(28.0 / 30.0, 0.5)
-        self.bottom.position = CGPointMake(40, 36)
+        self.bottom.position = CGPointMake(40, 14)
     }
 
     var showsMenu: Bool = false {

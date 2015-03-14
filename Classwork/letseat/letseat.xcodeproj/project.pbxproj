@@ -15,6 +15,10 @@
 		7F6C7CAD1AAE7F13002C2D6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F6C7CAC1AAE7F13002C2D6C /* Images.xcassets */; };
 		7F6C7CB01AAE7F13002C2D6C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F6C7CAE1AAE7F13002C2D6C /* LaunchScreen.xib */; };
 		7F6C7CBC1AAE7F13002C2D6C /* letseatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CBB1AAE7F13002C2D6C /* letseatTests.swift */; };
+		7FE10A131AB3BA8C00B09F50 /* LetsEatNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */; };
+		7FE10A151AB3C16C00B09F50 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE10A141AB3C16C00B09F50 /* MapKit.framework */; };
+		7FE10A191AB3C23A00B09F50 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */; };
+		7FE10A1B1AB3C91800B09F50 /* Maps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A1A1AB3C91800B09F50 /* Maps.swift */; };
 		7FF11CA91AB0A1DA00BDB868 /* MoodListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF11CA81AB0A1DA00BDB868 /* MoodListTableViewController.swift */; };
 		7FF11CAB1AB0BE9400BDB868 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF11CAA1AB0BE9400BDB868 /* Mood.swift */; };
 		7FF11CAE1AB0D67900BDB868 /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF11CAD1AB0D67900BDB868 /* HamburgerButton.swift */; };
@@ -33,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7F0396091AB0009300AFD33C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		7F0396091AB0009300AFD33C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7F6C7C9D1AAE7F13002C2D6C /* letseat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = letseat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C7CA11AAE7F13002C2D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F6C7CA21AAE7F13002C2D6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +49,10 @@
 		7F6C7CB51AAE7F13002C2D6C /* letseatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = letseatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C7CBA1AAE7F13002C2D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F6C7CBB1AAE7F13002C2D6C /* letseatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letseatTests.swift; sourceTree = "<group>"; };
+		7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetsEatNavigationBar.swift; sourceTree = "<group>"; };
+		7FE10A141AB3C16C00B09F50 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		7FE10A1A1AB3C91800B09F50 /* Maps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maps.swift; sourceTree = "<group>"; };
 		7FF11CA81AB0A1DA00BDB868 /* MoodListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodListTableViewController.swift; sourceTree = "<group>"; };
 		7FF11CAA1AB0BE9400BDB868 /* Mood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		7FF11CAC1AB0C43300BDB868 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
@@ -61,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FE10A151AB3C16C00B09F50 /* MapKit.framework in Frameworks */,
 				7FF11CB21AB0DECD00BDB868 /* CoreGraphics.framework in Frameworks */,
 				7FF11CB01AB0DEC300BDB868 /* QuartzCore.framework in Frameworks */,
 				483840BB9B415F075ED76681 /* Pods.framework in Frameworks */,
@@ -102,15 +111,13 @@
 			isa = PBXGroup;
 			children = (
 				7F6C7CA21AAE7F13002C2D6C /* AppDelegate.swift */,
-				7F6C7CA71AAE7F13002C2D6C /* ViewController.swift */,
+				7FE10A161AB3C1B600B09F50 /* Controllers */,
 				7F6C7CA91AAE7F13002C2D6C /* Main.storyboard */,
 				7F6C7CAC1AAE7F13002C2D6C /* Images.xcassets */,
 				7F6C7CAE1AAE7F13002C2D6C /* LaunchScreen.xib */,
 				7F6C7CA41AAE7F13002C2D6C /* letseat.xcdatamodeld */,
 				7F6C7CA01AAE7F13002C2D6C /* Supporting Files */,
-				7FF11CA81AB0A1DA00BDB868 /* MoodListTableViewController.swift */,
-				7FF11CAD1AB0D67900BDB868 /* HamburgerButton.swift */,
-				7FF11CAA1AB0BE9400BDB868 /* Mood.swift */,
+				7FE10A171AB3C1CF00B09F50 /* Models */,
 				7FF11CAC1AB0C43300BDB868 /* MyPlayground.playground */,
 			);
 			path = letseat;
@@ -141,9 +148,31 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7FE10A161AB3C1B600B09F50 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7F6C7CA71AAE7F13002C2D6C /* ViewController.swift */,
+				7FF11CA81AB0A1DA00BDB868 /* MoodListTableViewController.swift */,
+				7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		7FE10A171AB3C1CF00B09F50 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7FF11CAD1AB0D67900BDB868 /* HamburgerButton.swift */,
+				7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */,
+				7FF11CAA1AB0BE9400BDB868 /* Mood.swift */,
+				7FE10A1A1AB3C91800B09F50 /* Maps.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		BE072C8D6D1A2E478DA93B7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FE10A141AB3C16C00B09F50 /* MapKit.framework */,
 				7FF11CB11AB0DECD00BDB868 /* CoreGraphics.framework */,
 				7FF11CAF1AB0DEC200BDB868 /* QuartzCore.framework */,
 				9797E8BCBF0E0CC42D1F1AC0 /* Pods.framework */,
@@ -313,10 +342,13 @@
 			files = (
 				7FF11CAB1AB0BE9400BDB868 /* Mood.swift in Sources */,
 				7F6C7CA81AAE7F13002C2D6C /* ViewController.swift in Sources */,
+				7FE10A1B1AB3C91800B09F50 /* Maps.swift in Sources */,
 				7F6C7CA61AAE7F13002C2D6C /* letseat.xcdatamodeld in Sources */,
 				7FF11CA91AB0A1DA00BDB868 /* MoodListTableViewController.swift in Sources */,
+				7FE10A191AB3C23A00B09F50 /* PlacesViewController.swift in Sources */,
 				7F6C7CA31AAE7F13002C2D6C /* AppDelegate.swift in Sources */,
 				7FF11CAE1AB0D67900BDB868 /* HamburgerButton.swift in Sources */,
+				7FE10A131AB3BA8C00B09F50 /* LetsEatNavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

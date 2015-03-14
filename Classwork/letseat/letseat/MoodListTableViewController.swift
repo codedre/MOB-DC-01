@@ -13,7 +13,7 @@ let accessToken = "AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs"
 
 class MoodListTableViewController: UITableViewController {
     var moodArrary = ["HAPPY 😃", "SAD 😔", "HEALTHY 💊","SICK 😷","ETHNIC 👳","COMFORT 🛀","FUN 😎"]
-//    var button: HamburgerButton! = nil
+    var button: HamburgerButton! = nil
 
     //Get google places data
     func googleplaces() {
@@ -21,26 +21,25 @@ class MoodListTableViewController: UITableViewController {
 
         }
         
+        self.button = HamburgerButton(frame: CGRectMake(0, 0, 5, 5))
+        self.button.addTarget(self, action: "toggle:", forControlEvents: .TouchUpInside)
+        var transform = self.button.transform
+        transform = CGAffineTransformScale(transform, 0.65, 0.65)
+        
+        self.button.transform = transform
+        
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(customView: self.button), animated: true)
     }
-    func toggle(sender: AnyObject!) {
-        self.button.showsMenu = !self.button.showsMenu
+    
+    func toggle(button:UIButton) {
+         self.button.showsMenu = !self.button.showsMenu
     }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.googleplaces()
-        
-//        self.button = HamburgerButton(frame: CGRectMake(133, 133, 54, 54))
-//        self.button.addTarget(self, action: "toggle:", forControlEvents:.TouchUpInside)
-//        
-//        self.view.addSubview(button)
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {

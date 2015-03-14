@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="odK-W4-HO9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2ni-Pj-xhP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -92,6 +92,7 @@
             <objects>
                 <tableViewController id="58i-Xp-UI9" customClass="MoodListTableViewController" customModule="letseat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="139" sectionHeaderHeight="22" sectionFooterHeight="22" id="fzR-48-bgO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -144,12 +145,132 @@
             </objects>
             <point key="canvasLocation" x="1357.5" y="1095"/>
         </scene>
+        <!--Places View Controller-->
+        <scene sceneID="TR7-y9-K1o">
+            <objects>
+                <viewController id="2ni-Pj-xhP" customClass="PlacesViewController" customModule="letseat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yOE-la-zbt"/>
+                        <viewControllerLayoutGuide type="bottom" id="YN5-7p-vZ0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HIm-uX-lAh">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="400" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="u6I-Ic-b25">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Fwh-dw-Ppg"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="na5-PB-1jA">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="T8e-Zj-aIh"/>
+                                    </navigationItem>
+                                </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Fwh-dw-Ppg"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="Fwh-dw-Ppg"/>
+                                    </mask>
+                                </variation>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dsj-1N-eC8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="270" id="ghq-tU-XaR"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ghq-tU-XaR"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="ghq-tU-XaR"/>
+                                    </mask>
+                                </variation>
+                            </tableView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hXz-O2-1ar">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2ni-Pj-xhP" id="Hxf-00-9nu"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YN5-7p-vZ0" firstAttribute="top" secondItem="Dsj-1N-eC8" secondAttribute="bottom" id="026-kr-jrY"/>
+                            <constraint firstAttribute="trailing" secondItem="Dsj-1N-eC8" secondAttribute="trailing" id="19u-Fd-TN9"/>
+                            <constraint firstItem="Dsj-1N-eC8" firstAttribute="leading" secondItem="HIm-uX-lAh" secondAttribute="leading" id="48c-FZ-2dj"/>
+                            <constraint firstAttribute="trailing" secondItem="u6I-Ic-b25" secondAttribute="trailing" id="4iu-ma-sE0"/>
+                            <constraint firstItem="u6I-Ic-b25" firstAttribute="top" secondItem="yOE-la-zbt" secondAttribute="bottom" id="93a-zS-mK4"/>
+                            <constraint firstItem="Dsj-1N-eC8" firstAttribute="top" secondItem="hXz-O2-1ar" secondAttribute="bottom" constant="40" id="A3X-Yg-WM2">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="hXz-O2-1ar" firstAttribute="leading" secondItem="HIm-uX-lAh" secondAttribute="leading" id="ikU-OM-f2E"/>
+                            <constraint firstItem="u6I-Ic-b25" firstAttribute="leading" secondItem="HIm-uX-lAh" secondAttribute="leading" id="msr-Hv-NZy"/>
+                            <constraint firstAttribute="trailing" secondItem="hXz-O2-1ar" secondAttribute="trailing" id="r3q-at-JI8"/>
+                            <constraint firstItem="hXz-O2-1ar" firstAttribute="top" secondItem="yOE-la-zbt" secondAttribute="bottom" constant="44" id="uSe-tX-AP8"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="u6I-Ic-b25"/>
+                                <exclude reference="Dsj-1N-eC8"/>
+                                <exclude reference="hXz-O2-1ar"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4iu-ma-sE0"/>
+                                <exclude reference="93a-zS-mK4"/>
+                                <exclude reference="msr-Hv-NZy"/>
+                                <exclude reference="ikU-OM-f2E"/>
+                                <exclude reference="r3q-at-JI8"/>
+                                <exclude reference="uSe-tX-AP8"/>
+                                <exclude reference="19u-Fd-TN9"/>
+                                <exclude reference="48c-FZ-2dj"/>
+                                <exclude reference="A3X-Yg-WM2"/>
+                                <exclude reference="026-kr-jrY"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="u6I-Ic-b25"/>
+                                <include reference="Dsj-1N-eC8"/>
+                                <include reference="hXz-O2-1ar"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="4iu-ma-sE0"/>
+                                <include reference="93a-zS-mK4"/>
+                                <include reference="msr-Hv-NZy"/>
+                                <include reference="ikU-OM-f2E"/>
+                                <include reference="r3q-at-JI8"/>
+                                <include reference="uSe-tX-AP8"/>
+                                <include reference="19u-Fd-TN9"/>
+                                <include reference="48c-FZ-2dj"/>
+                                <include reference="A3X-Yg-WM2"/>
+                                <include reference="026-kr-jrY"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="hXz-O2-1ar" id="MZM-Vb-HIJ"/>
+                        <outlet property="navBar" destination="u6I-Ic-b25" id="lqI-cx-gwe"/>
+                        <outlet property="resultsTableView" destination="Dsj-1N-eC8" id="KWD-Rc-8A5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jge-Kx-Oz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2134.5" y="1095"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="pCY-Zm-CQC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="odK-W4-HO9" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yka-bb-iJm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yka-bb-iJm" customClass="LetsEatNavigationBar" customModule="letseat" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
