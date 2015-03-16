@@ -24,3 +24,10 @@ var moodTitle = Mood()
 
 moodTitle.moodLabels()
 
+var token = "jfwej9o309rfapjijf9gajh9"
+var query = "food"
+
+for i in 1...8 {
+    println("http://googleapi.com/search/location?query=\(query)&key=\(token)")
+}
+

@@ -8,17 +8,23 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var locationManager: CLLocationManager?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        UINavigationBar.appearance().barTintColor = UIColor.redColor()
+        UINavigationBar.appearance().barTintColor = UIColor.orangeColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+        // request location authorization
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
+        
         
         return true
     }

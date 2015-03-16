@@ -46,20 +46,3 @@ code_sign() {
   /usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} --preserve-metadata=identifier,entitlements "$1"
 }
 
-
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework 'AFNetworking.framework'
-  install_framework 'Alamofire.framework'
-  install_framework 'BDBOAuth1Manager.framework'
-  install_framework 'Haneke.framework'
-  install_framework 'Snap.framework'
-  install_framework 'SwiftyJSON.framework'
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework 'AFNetworking.framework'
-  install_framework 'Alamofire.framework'
-  install_framework 'BDBOAuth1Manager.framework'
-  install_framework 'Haneke.framework'
-  install_framework 'Snap.framework'
-  install_framework 'SwiftyJSON.framework'
-fi

@@ -15,10 +15,14 @@
 		7F6C7CAD1AAE7F13002C2D6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F6C7CAC1AAE7F13002C2D6C /* Images.xcassets */; };
 		7F6C7CB01AAE7F13002C2D6C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F6C7CAE1AAE7F13002C2D6C /* LaunchScreen.xib */; };
 		7F6C7CBC1AAE7F13002C2D6C /* letseatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CBB1AAE7F13002C2D6C /* letseatTests.swift */; };
+		7FB725CB1AB411A200129F80 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB725CA1AB411A200129F80 /* YelpClient.swift */; };
+		7FC8FBDF1AB4B5480024E83D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8FBDE1AB4B5480024E83D /* DetailViewController.swift */; };
+		7FC8FBE31AB4F3DB0024E83D /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8FBE21AB4F3DB0024E83D /* MenuButton.swift */; };
+		7FC8FBEB1AB508260024E83D /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FC8FBEA1AB508260024E83D /* BusinessCell.xib */; };
+		7FC8FBED1AB512CC0024E83D /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8FBEC1AB512CC0024E83D /* BusinessCell.swift */; };
 		7FE10A131AB3BA8C00B09F50 /* LetsEatNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */; };
 		7FE10A151AB3C16C00B09F50 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE10A141AB3C16C00B09F50 /* MapKit.framework */; };
 		7FE10A191AB3C23A00B09F50 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */; };
-		7FE10A1B1AB3C91800B09F50 /* Maps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A1A1AB3C91800B09F50 /* Maps.swift */; };
 		7FF11CA91AB0A1DA00BDB868 /* MoodListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF11CA81AB0A1DA00BDB868 /* MoodListTableViewController.swift */; };
 		7FF11CAB1AB0BE9400BDB868 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF11CAA1AB0BE9400BDB868 /* Mood.swift */; };
 		7FF11CAE1AB0D67900BDB868 /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF11CAD1AB0D67900BDB868 /* HamburgerButton.swift */; };
@@ -37,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C12A6A1B71E44D3D2259298 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7F0396091AB0009300AFD33C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7F6C7C9D1AAE7F13002C2D6C /* letseat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = letseat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C7CA11AAE7F13002C2D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,19 +54,23 @@
 		7F6C7CB51AAE7F13002C2D6C /* letseatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = letseatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C7CBA1AAE7F13002C2D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F6C7CBB1AAE7F13002C2D6C /* letseatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letseatTests.swift; sourceTree = "<group>"; };
+		7FB725CA1AB411A200129F80 /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
+		7FB725CC1AB495E100129F80 /* letseat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "letseat-Bridging-Header.h"; sourceTree = "<group>"; };
+		7FC8FBDE1AB4B5480024E83D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7FC8FBE21AB4F3DB0024E83D /* MenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		7FC8FBEA1AB508260024E83D /* BusinessCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessCell.xib; sourceTree = "<group>"; };
+		7FC8FBEC1AB512CC0024E83D /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetsEatNavigationBar.swift; sourceTree = "<group>"; };
 		7FE10A141AB3C16C00B09F50 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
-		7FE10A1A1AB3C91800B09F50 /* Maps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maps.swift; sourceTree = "<group>"; };
 		7FF11CA81AB0A1DA00BDB868 /* MoodListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodListTableViewController.swift; sourceTree = "<group>"; };
 		7FF11CAA1AB0BE9400BDB868 /* Mood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		7FF11CAC1AB0C43300BDB868 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		7FF11CAD1AB0D67900BDB868 /* HamburgerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerButton.swift; sourceTree = "<group>"; };
 		7FF11CAF1AB0DEC200BDB868 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7FF11CB11AB0DECD00BDB868 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		8C07878296792920D38957DB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9797E8BCBF0E0CC42D1F1AC0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC43A3CFE2D0626DF1CB9DB7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		AA2D2DF2161858396C7C4DD7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +95,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		353A6EC670ABF06E79DD5660 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AA2D2DF2161858396C7C4DD7 /* Pods.debug.xcconfig */,
+				7C12A6A1B71E44D3D2259298 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7F6C7C941AAE7F13002C2D6C = {
 			isa = PBXGroup;
 			children = (
@@ -93,8 +111,8 @@
 				7F6C7C9F1AAE7F13002C2D6C /* letseat */,
 				7F6C7CB81AAE7F13002C2D6C /* letseatTests */,
 				7F6C7C9E1AAE7F13002C2D6C /* Products */,
-				EAF4D3D285B26D46A2CE1B8A /* Pods */,
 				BE072C8D6D1A2E478DA93B7B /* Frameworks */,
+				353A6EC670ABF06E79DD5660 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +128,7 @@
 		7F6C7C9F1AAE7F13002C2D6C /* letseat */ = {
 			isa = PBXGroup;
 			children = (
+				7F78E50A1AB650BB00BB764A /* API */,
 				7F6C7CA21AAE7F13002C2D6C /* AppDelegate.swift */,
 				7FE10A161AB3C1B600B09F50 /* Controllers */,
 				7F6C7CA91AAE7F13002C2D6C /* Main.storyboard */,
@@ -119,6 +138,8 @@
 				7F6C7CA01AAE7F13002C2D6C /* Supporting Files */,
 				7FE10A171AB3C1CF00B09F50 /* Models */,
 				7FF11CAC1AB0C43300BDB868 /* MyPlayground.playground */,
+				7FB725CC1AB495E100129F80 /* letseat-Bridging-Header.h */,
+				7FC8FBEA1AB508260024E83D /* BusinessCell.xib */,
 			);
 			path = letseat;
 			sourceTree = "<group>";
@@ -148,12 +169,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7F78E50A1AB650BB00BB764A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				7FB725CA1AB411A200129F80 /* YelpClient.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		7FE10A161AB3C1B600B09F50 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				7F6C7CA71AAE7F13002C2D6C /* ViewController.swift */,
 				7FF11CA81AB0A1DA00BDB868 /* MoodListTableViewController.swift */,
 				7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */,
+				7FC8FBDE1AB4B5480024E83D /* DetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -164,7 +194,8 @@
 				7FF11CAD1AB0D67900BDB868 /* HamburgerButton.swift */,
 				7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */,
 				7FF11CAA1AB0BE9400BDB868 /* Mood.swift */,
-				7FE10A1A1AB3C91800B09F50 /* Maps.swift */,
+				7FC8FBE21AB4F3DB0024E83D /* MenuButton.swift */,
+				7FC8FBEC1AB512CC0024E83D /* BusinessCell.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -178,15 +209,6 @@
 				9797E8BCBF0E0CC42D1F1AC0 /* Pods.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		EAF4D3D285B26D46A2CE1B8A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				AC43A3CFE2D0626DF1CB9DB7 /* Pods.debug.xcconfig */,
-				8C07878296792920D38957DB /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F6C7CAB1AAE7F13002C2D6C /* Main.storyboard in Resources */,
+				7FC8FBEB1AB508260024E83D /* BusinessCell.xib in Resources */,
 				7F6C7CB01AAE7F13002C2D6C /* LaunchScreen.xib in Resources */,
 				7F6C7CAD1AAE7F13002C2D6C /* Images.xcassets in Resources */,
 			);
@@ -341,13 +364,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FF11CAB1AB0BE9400BDB868 /* Mood.swift in Sources */,
+				7FC8FBED1AB512CC0024E83D /* BusinessCell.swift in Sources */,
 				7F6C7CA81AAE7F13002C2D6C /* ViewController.swift in Sources */,
-				7FE10A1B1AB3C91800B09F50 /* Maps.swift in Sources */,
 				7F6C7CA61AAE7F13002C2D6C /* letseat.xcdatamodeld in Sources */,
 				7FF11CA91AB0A1DA00BDB868 /* MoodListTableViewController.swift in Sources */,
 				7FE10A191AB3C23A00B09F50 /* PlacesViewController.swift in Sources */,
 				7F6C7CA31AAE7F13002C2D6C /* AppDelegate.swift in Sources */,
+				7FC8FBE31AB4F3DB0024E83D /* MenuButton.swift in Sources */,
 				7FF11CAE1AB0D67900BDB868 /* HamburgerButton.swift in Sources */,
+				7FC8FBDF1AB4B5480024E83D /* DetailViewController.swift in Sources */,
+				7FB725CB1AB411A200129F80 /* YelpClient.swift in Sources */,
 				7FE10A131AB3BA8C00B09F50 /* LetsEatNavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,25 +495,30 @@
 		};
 		7F6C7CC01AAE7F13002C2D6C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC43A3CFE2D0626DF1CB9DB7 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = AA2D2DF2161858396C7C4DD7 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = letseat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "letseat/letseat-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		7F6C7CC11AAE7F13002C2D6C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C07878296792920D38957DB /* Pods.release.xcconfig */;
+			baseConfigurationReference = 7C12A6A1B71E44D3D2259298 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = letseat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "letseat/letseat-Bridging-Header.h";
 			};
 			name = Release;
 		};

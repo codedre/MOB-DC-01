@@ -15,11 +15,8 @@ class MoodListTableViewController: UITableViewController {
     var moodArrary = ["HAPPY 😃", "SAD 😔", "HEALTHY 💊","SICK 😷","ETHNIC 👳","COMFORT 🛀","FUN 😎"]
     var button: HamburgerButton! = nil
 
-    //Get google places data
-    func googleplaces() {
-        Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs").responseJSON { (request, response, json, error) in
-
-        }
+    //add custom button
+    func menuButton() {
         
         self.button = HamburgerButton(frame: CGRectMake(0, 0, 5, 5))
         self.button.addTarget(self, action: "toggle:", forControlEvents: .TouchUpInside)
@@ -38,8 +35,7 @@ class MoodListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.googleplaces()
+        self.menuButton()
     }
 
     override func didReceiveMemoryWarning() {

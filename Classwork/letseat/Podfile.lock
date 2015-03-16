@@ -52,7 +52,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   AFNetworking:
-    :commit: 177c84661b01caef5be63a7502ae1a852a71dd2e
+    :commit: dccc98dc23599e92c77f9aa1829a7d4429e57764
     :git: https://github.com/AFNetworking/AFNetworking.git
   Alamofire:
     :commit: 1d9932f6359c27879d0af7646c3a389884cc310f

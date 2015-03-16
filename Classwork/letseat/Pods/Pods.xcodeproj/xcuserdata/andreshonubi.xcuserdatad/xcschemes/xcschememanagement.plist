@@ -4,36 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AFNetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Alamofire.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-BDBOAuth1Manager.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Haneke.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Snap.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SwiftyJSON.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,37 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>011E4E011F797A14B456C260</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1EC523CEF97FC94EED6AC2EB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1F0E001CA5FCCDC51690E8A5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7EEC4597B9BB0EAB134FC672</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BED483C3F9CE065863F9754C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CE154921FB690E36BEE621C7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FC81607157551F87A90331FF</key>
+		<key>64D7BBDC8ECA4281E8D5EB58</key>
 		<dict>
 			<key>primary</key>
 			<true/>
