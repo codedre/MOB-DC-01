@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-Haneke.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -12,7 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>64D7BBDC8ECA4281E8D5EB58</key>
+		<key>0D0D58C3DF5C412EDE4189FE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3270AE51580C9AA2E34CA1F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
