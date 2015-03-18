@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import OAuthSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -115,6 +116,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    // OAuth
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        println(url)
+        if (url.host == "oauth-callback") {
+            if (url.path!.hasPrefix("/yelp")) {
+                OAuth1Swift.handleOpenURL(url)
+            }
+        }
+        return true
+    }
 
 }
+
+
 

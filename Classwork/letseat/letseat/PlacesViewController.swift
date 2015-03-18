@@ -42,6 +42,8 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
                 dispatch_async(dispatch_get_main_queue(), {
                     self.resultsTableView.reloadData()
                 })
+            } else {
+                println(error)
             }
         }
     }
@@ -109,6 +111,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:BusinessCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as BusinessCell
+//        cell.reset()
         // Sets each cell to equal each item in the array
         if let jsonDict = self.jsonObj {
             // get images for each business
@@ -116,21 +119,48 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
                 
                 let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=70&photoreference=\(imageString)\(self.accessKey)")
                 cell.thumbImageView?.hnk_setImageFromURL(url!)
-                
-            } else{
-                println("no image")
             }
             // set label to each business name
             cell.nameLabel?.text = jsonDict["results"][indexPath.row]["name"].string
             
             // get price level
-            if let priceLevel = jsonDict["results"][indexPath.row]["price_level"].string {
-                var price = priceLevel.toInt()
-                //cell.priceLabel.text = String(count: price, repeatedValue: "$")
-                println(price)
+            if let priceLevel = jsonDict["results"][indexPath.row]["price_level"].int {
+                let money: Character = "$"
+                cell.priceLabel.text = String(count: priceLevel, repeatedValue: money)
             }
             
+            // rating image
+            if let ratingLevel = jsonDict["results"][indexPath.row]["rating"].float {
+                cell.setRatingImage(ratingLevel)
+            }
             
+            // rating Label
+            if let status = jsonDict["results"][indexPath.row]["opening_hours"]["open_now"].bool {
+                cell.setStatus(status)
+            }
+            
+            // address
+            if let address = jsonDict["results"][indexPath.row]["formatted_address"].string {
+                cell.setAdd(address)
+            }
+            
+            // categories
+            if let categories = jsonDict["results"][indexPath.row]["types"].array {
+                var complete = ""
+                var all: [String] = []
+                for cat in categories {
+                    let category = cat.string
+                    all.append(category!)
+                    complete = ", ".join(all)
+                    //cell.setCategories(category!)
+                }
+//                let category = categories[].string
+                println(complete)
+                cell.setCategories(complete)
+                
+            }
+            
+
         } else{
             println("something went wrong")
         }
@@ -138,6 +168,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         return cell
         
     }
+    
 
     /*
     // MARK: - Navigation

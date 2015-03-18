@@ -7,26 +7,62 @@
 //
 
 import UIKit
-import Alamofire
 
 class ViewController: UIViewController {
 
-    func loadYelp () {
-        Alamofire.request(.GET, "http://google.com", parameters: nil)
-            .response { (request, response, data, error) in
-                println(request)
-                println(response)
-                println(error)
-        }
+    @IBOutlet weak var loginTextField: UITextField!
+    
+    func setBackground(){
         
+        // Background color
+        let gradient = CAGradientLayer()
+        gradient.colors = [UIColor.orangeColor().CGColor, UIColor.redColor().CGColor]
+        gradient.startPoint = CGPointMake(0, 0)
+        gradient.endPoint = CGPointMake(0, 1)
+        gradient.locations = [0.4,0.99]
+        gradient.frame = self.view.frame
+        self.view.layer.insertSublayer(gradient, atIndex: 0)
+        
+        
+        // Parallax ////////////////////////////////
+        
+        // Set vertical effect
+        var verticalMotionEffect: UIInterpolatingMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: .TiltAlongVerticalAxis)
+        verticalMotionEffect.minimumRelativeValue = -10
+        verticalMotionEffect.maximumRelativeValue = 10
+        
+        // Set horizontal effect
+        
+        var horizontalMotionEffect: UIInterpolatingMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: .TiltAlongHorizontalAxis)
+        horizontalMotionEffect.minimumRelativeValue = -10
+        horizontalMotionEffect.maximumRelativeValue = 10
+        
+        // Combination
+        
+        var combinationEffect: UIMotionEffectGroup = UIMotionEffectGroup()
+        combinationEffect.motionEffects = [horizontalMotionEffect, verticalMotionEffect]
+        self.view.addMotionEffect(combinationEffect)
+    }
+    
+    // Login in textfield
+    func drawTextField() {
+//        self.loginTextField.borderStyle = UITextBorderStyle.None
+        self.loginTextField.placeholder = "Some Text Here"
+        self.loginTextField.textColor = UIColor.blackColor()
+        
+        var bottomBorder = CALayer()
+        bottomBorder.frame = CGRectMake(0.0, self.loginTextField.frame.size.height - 1, self.loginTextField.frame.size.width, 1.0);
+        bottomBorder.backgroundColor = UIColor.blackColor().CGColor
+        self.loginTextField.layer.addSublayer(bottomBorder)
+
+    
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //calling api's
-        self.loadYelp()
-        
+        //setBackground()
+        drawTextField()
         
     }
 
@@ -38,7 +74,3 @@ class ViewController: UIViewController {
 
 }
 
-//http://api.yelp.com/v2/search?term=food&location=San+Francisco&oauth_consumer_key=zrwuNdHcFxXgwzJ1FNskDw&oauth_token=ye_nBE1-uvZDdfxmJsU_r1OyA6pCqbro&oauth_signature_method=HMAC-SHA1&oauth_signature=HsN4mnl9y0eZLDdq976ZJlgXLQ8&oauth_timestamp=1426054495&oauth_nonce=kllo9940pd9333jh
-//
-//
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs

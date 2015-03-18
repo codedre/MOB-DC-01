@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Snap
 
 let accessToken = "AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs"
 

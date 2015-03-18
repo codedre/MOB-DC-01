@@ -6,32 +6,58 @@
 //  Copyright (c) 2014 Timothy Lee. All rights reserved.
 //
 
-/*import UIKit
+import UIKit
+import OAuthSwift
 
-class YelpClient: BDBOAuth1RequestOperationManager {
-    var accessToken: String!
-    var accessSecret: String!
+class YelpClient {
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    init(consumerKey key: String!, consumerSecret secret: String!, accessToken: String!, accessSecret: String!) {
-        self.accessToken = accessToken
-        self.accessSecret = accessSecret
-        var baseUrl = NSURL(string: "http://api.yelp.com/v2/")
-        super.init(baseURL: baseUrl, consumerKey: key, consumerSecret: secret);
+    func doOAuthYelp() {
+        let oauthswift = OAuth1Swift(
+            consumerKey:    Yelp["consumerKey"]!,
+            consumerSecret: Yelp["consumerSecret"]!,
+            requestTokenUrl: "http://api.yelp.com/v2/",
+            authorizeUrl:    "http://api.yelp.com/v2/",
+            accessTokenUrl:  "http://api.yelp.com/v2/"
+        )
         
-        var token = BDBOAuthToken(token: accessToken, secret: accessSecret, expiration: nil)
-        self.requestSerializer.saveAccessToken(token)
+        let date = NSDate()
+        let timestamp = date.timeIntervalSince1970
+        
+        
+        oauthswift.authorizeWithCallbackURL( NSURL(string: "oauth-swift://oauth-callback/yelp")!, success: {
+            credential, response in
+            println("Yelp", message: "oauth_token:\(credential.oauth_token)\n\noauth_toke_secret:\(credential.oauth_token_secret)")
+            let url :String = "http://api.yelp.com/v2/"
+            let parameters :Dictionary = [
+                "oauth_consumer_key"      : "zrwuNdHcFxXgwzJ1FNskDw",
+                "oauth_token"             : "ye_nBE1-uvZDdfxmJsU_r1OyA6pCqbro",
+                "oauth_signature_method"  : "hmac-sha1",
+                "oauth_signature"         : "json",
+                "oauth_timestamp"         : "dfgdjfd",
+                "oauth_nonce"             : "url_q,url_z"
+            ]
+            oauthswift.client.get(url, parameters: parameters,
+                success: {
+                    data, response in
+                    let jsonDict: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil)
+                    println(jsonDict)
+                }, failure: {(error:NSError!) -> Void in
+                    println(error)
+            })
+            
+            
+            }, failure: {(error:NSError!) -> Void in
+                println(error.localizedDescription)
+        })
+        
     }
     
-    func searchWithTerm(term: String, success: (AFHTTPRequestOperation!, AnyObject!) -> Void, failure: (AFHTTPRequestOperation!, NSError!) -> Void) -> AFHTTPRequestOperation! {
-        // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
-        var parameters = ["term": term, "location": "San Francisco"]
-        return self.GET("search", parameters: parameters, success: success, failure: failure)
+    func showAlertView(title: String, message: String) {
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+        //self.presentViewController(alert, animated: true, completion: nil)
     }
-    
-}*/
+            
+}
 
 

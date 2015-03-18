@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Nx5-C8-6XW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="odK-W4-HO9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,76 +18,123 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dLw-wx-zuG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="letseat" translatesAutoresizingMaskIntoConstraints="NO" id="egO-Py-jbn">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="267" id="Ehg-Op-UpS"/>
+                                    <constraint firstAttribute="width" constant="331" id="aSf-TA-a8o"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Ehg-Op-UpS"/>
+                                        <exclude reference="aSf-TA-a8o"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Ehg-Op-UpS"/>
+                                        <include reference="aSf-TA-a8o"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t9D-kg-mgf">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="124" width="368" height="30"/>
+                                    <rect key="frame" x="152" y="28" width="97" height="30"/>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v84-Ft-c86">
-                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="175" width="368" height="30"/>
-                                </variation>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logo goes here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgT-ZY-5JK">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="140" y="52" width="120" height="21"/>
-                                </variation>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1W-hw-ot7">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.81176470590000005" green="0.81568627449999997" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="81" y="307" width="71" height="46"/>
-                                </variation>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RqD-aE-l68">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.81176470590000005" green="0.81568627449999997" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Sign Up">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="242" y="305" width="69" height="50"/>
-                                </variation>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="egO-Py-jbn" secondAttribute="trailing" constant="34" id="Fwn-GL-Emm"/>
+                            <constraint firstItem="egO-Py-jbn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="35" id="iBW-Xo-HLa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="egO-Py-jbn" secondAttribute="trailing" constant="18" id="jBb-D7-7jK"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="egO-Py-jbn" secondAttribute="bottom" constant="248" id="o7I-ZP-jwU"/>
+                            <constraint firstItem="egO-Py-jbn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="19" id="x2O-5C-2L3"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="dLw-wx-zuG"/>
-                                <exclude reference="v84-Ft-c86"/>
-                                <exclude reference="HgT-ZY-5JK"/>
-                                <exclude reference="Y1W-hw-ot7"/>
-                                <exclude reference="RqD-aE-l68"/>
+                                <exclude reference="egO-Py-jbn"/>
+                                <exclude reference="t9D-kg-mgf"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="o7I-ZP-jwU"/>
+                                <exclude reference="Fwn-GL-Emm"/>
+                                <exclude reference="iBW-Xo-HLa"/>
+                                <exclude reference="jBb-D7-7jK"/>
+                                <exclude reference="x2O-5C-2L3"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="dLw-wx-zuG"/>
-                                <include reference="v84-Ft-c86"/>
-                                <include reference="HgT-ZY-5JK"/>
-                                <include reference="Y1W-hw-ot7"/>
-                                <include reference="RqD-aE-l68"/>
+                                <include reference="egO-Py-jbn"/>
+                                <include reference="t9D-kg-mgf"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="o7I-ZP-jwU"/>
+                                <include reference="Fwn-GL-Emm"/>
+                                <include reference="iBW-Xo-HLa"/>
+                                <exclude reference="jBb-D7-7jK"/>
+                                <exclude reference="x2O-5C-2L3"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="loginTextField" destination="t9D-kg-mgf" id="taW-Hi-k5e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="439.5" y="399"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="BRm-A2-nPG">
+            <objects>
+                <viewController id="opI-fi-YT4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8bz-Uo-zcX"/>
+                        <viewControllerLayoutGuide type="bottom" id="BRF-zC-0x4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w87-7n-sxn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ocs-XN-udQ">
+                                <rect key="frame" x="0.0" y="-162" width="320" height="162"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="438" width="211" height="162"/>
+                                </variation>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Woe-k4-gXD">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="47" y="118" width="0.0" height="0.0"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="ocs-XN-udQ"/>
+                                <exclude reference="Woe-k4-gXD"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="ocs-XN-udQ"/>
+                                <include reference="Woe-k4-gXD"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qLS-MM-yYR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1282.5" y="400"/>
         </scene>
         <!--Mood List Table View Controller-->
         <scene sceneID="MbM-zo-X9Z">
@@ -108,9 +157,7 @@
                             <outlet property="delegate" destination="58i-Xp-UI9" id="PaR-Tn-WDi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="1xe-aE-bTm">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="xVf-XS-0nx"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="1xe-aE-bTm"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEl-Zb-TyT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -257,12 +304,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8U3-Ad-adz">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="60" y="64" width="281" height="229"/>
-                                </variation>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1oG-SK-Jjn">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -278,20 +319,26 @@
                                     <rect key="frame" x="0.0" y="291" width="405" height="79"/>
                                 </variation>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8U3-Ad-adz">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="405" height="229"/>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="8U3-Ad-adz"/>
                                 <exclude reference="1oG-SK-Jjn"/>
                                 <exclude reference="WwP-lI-OBi"/>
+                                <exclude reference="8U3-Ad-adz"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="8U3-Ad-adz"/>
                                 <include reference="1oG-SK-Jjn"/>
                                 <include reference="WwP-lI-OBi"/>
+                                <include reference="8U3-Ad-adz"/>
                             </mask>
                         </variation>
                     </view>
@@ -359,4 +406,7 @@
             <point key="canvasLocation" x="439.5" y="2477"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="letseat" width="208" height="98"/>
+    </resources>
 </document>

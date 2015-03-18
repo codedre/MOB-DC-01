@@ -22,10 +22,10 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        googleplaces()
-        
+        //googleplaces()
         
     }
+    
     
     func googleplaces() {
         Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/place/textsearch/json?query=\(query)\(accessKey)").responseJSON { (request, response, json, error) in

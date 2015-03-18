@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		483840BB9B415F075ED76681 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9797E8BCBF0E0CC42D1F1AC0 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		7F4157741AB7EC710038AA62 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4157731AB7EC710038AA62 /* OAuth.swift */; };
 		7F6C7CA31AAE7F13002C2D6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CA21AAE7F13002C2D6C /* AppDelegate.swift */; };
 		7F6C7CA61AAE7F13002C2D6C /* letseat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CA41AAE7F13002C2D6C /* letseat.xcdatamodeld */; };
 		7F6C7CA81AAE7F13002C2D6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CA71AAE7F13002C2D6C /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		7C12A6A1B71E44D3D2259298 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7F0396091AB0009300AFD33C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7F4157731AB7EC710038AA62 /* OAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
 		7F6C7C9D1AAE7F13002C2D6C /* letseat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = letseat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C7CA11AAE7F13002C2D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F6C7CA21AAE7F13002C2D6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				7FB725CA1AB411A200129F80 /* YelpClient.swift */,
+				7F4157731AB7EC710038AA62 /* OAuth.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				7FC8FBDF1AB4B5480024E83D /* DetailViewController.swift in Sources */,
 				7FB725CB1AB411A200129F80 /* YelpClient.swift in Sources */,
 				7FE10A131AB3BA8C00B09F50 /* LetsEatNavigationBar.swift in Sources */,
+				7F4157741AB7EC710038AA62 /* OAuth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
