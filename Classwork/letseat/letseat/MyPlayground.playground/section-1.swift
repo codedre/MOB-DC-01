@@ -24,10 +24,15 @@ var moodTitle = Mood()
 
 moodTitle.moodLabels()
 
-var token = "jfwej9o309rfapjijf9gajh9"
-var query = "food"
+var moodArrary = [
+    ["mood": "happy", "food": "steak"],
+    ["mood": "sad", "food": "burgers"],
+    ["mood": "heathy", "food": "salad"],
+    ["mood": "sick", "food": "pho"],
+    ["mood": "ethinc", "food": "thia"],
+    ["mood": "comfort", "food": "chinese"],
+    ["mood": "fun", "food": "ice cream"]
+]
 
-for i in 1...8 {
-    println("http://googleapi.com/search/location?query=\(query)&key=\(token)")
-}
+moodArrary[0]["food"]!
 

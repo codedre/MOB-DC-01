@@ -15,6 +15,7 @@ let accessToken = "AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs"
 class MoodListTableViewController: UITableViewController {
     var moodArrary = ["HAPPY 😃", "SAD 😔", "HEALTHY 💊","SICK 😷","ETHNIC 👳","COMFORT 🛀","FUN 😎"]
     var button: HamburgerButton! = nil
+    var selectedIndexPath:NSIndexPath?
 
     //add custom button
     func menuButton() {
@@ -71,57 +72,26 @@ class MoodListTableViewController: UITableViewController {
         
     }
     
-//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-////        if editingStyle == .Delete {
-////            //removes it from the array and the view when array is specified
-//////            self.gaCampuses.removeAtIndex(indexPath.row)
-//////            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-////        }
-//    }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // get current text label title
+//        let indexPath = tableView.indexPathForSelectedRow()
+//        let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!
+        
+        self.selectedIndexPath = indexPath
+        self.performSegueWithIdentifier("showDetail", sender: self)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        let selectedCell = self.tableView.cellForRowAtIndexPath(self.selectedIndexPath!) as? BusinessCell
+        if let destionationVC = segue.destinationViewController as? PlacesViewController {
+            destionationVC.place = selectedCell.place
+        }
+        
     }
-    */
+    
 
 }

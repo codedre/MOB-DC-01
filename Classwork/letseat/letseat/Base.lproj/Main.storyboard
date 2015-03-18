@@ -116,18 +116,29 @@
                                     <rect key="frame" x="47" y="118" width="0.0" height="0.0"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pup-fj-rAI">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="218" y="285" width="46" height="30"/>
+                                </variation>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="ocs-XN-udQ"/>
                                 <exclude reference="Woe-k4-gXD"/>
+                                <exclude reference="pup-fj-rAI"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="ocs-XN-udQ"/>
                                 <include reference="Woe-k4-gXD"/>
+                                <include reference="pup-fj-rAI"/>
                             </mask>
                         </variation>
                     </view>
@@ -158,6 +169,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="1xe-aE-bTm"/>
+                    <connections>
+                        <segue destination="2ni-Pj-xhP" kind="show" identifier="showDetail" id="Psl-Hg-fwU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEl-Zb-TyT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -290,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jge-Kx-Oz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1357.5" y="1779"/>
+            <point key="canvasLocation" x="2212.5" y="1095"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="tls-i6-SYY">
@@ -368,24 +382,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7LV-ng-Uln" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="439.5" y="1095"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Yf0-9G-2E9">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nx5-C8-6XW" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W9O-p3-Emn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="2ni-Pj-xhP" kind="relationship" relationship="rootViewController" id="qCV-sL-2i3"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u8h-69-vwP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="439.5" y="1779"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sjt-xK-HnH">
