@@ -935,6 +935,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					CDFB04FD2D256CF7C2E73710 = {
+						DevelopmentTeam = PK9Z8762HB;
+					};
+					F54BE42CFEDC32BD82C1A77D = {
+						DevelopmentTeam = PK9Z8762HB;
+					};
+				};
 			};
 			buildConfigurationList = BB5996B89AEF30147CBB1404 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";

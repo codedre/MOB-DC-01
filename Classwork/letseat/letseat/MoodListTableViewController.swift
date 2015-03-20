@@ -75,20 +75,16 @@ class MoodListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         // get current text label title
-//        let indexPath = tableView.indexPathForSelectedRow()
-//        let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!
-        
-        self.selectedIndexPath = indexPath
-        self.performSegueWithIdentifier("showDetail", sender: self)
+        let indexPath = tableView.indexPathForSelectedRow()
+        let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!
+        self.performSegueWithIdentifier("showDetail", sender: currentCell)
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-        let selectedCell = self.tableView.cellForRowAtIndexPath(self.selectedIndexPath!) as? BusinessCell
+        let selectedCell = sender as UITableViewCell
         if let destionationVC = segue.destinationViewController as? PlacesViewController {
-            destionationVC.place = selectedCell.place
+            destionationVC.navTitle = selectedCell.textLabel?.text
         }
         
     }

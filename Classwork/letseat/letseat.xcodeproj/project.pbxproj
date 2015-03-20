@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		483840BB9B415F075ED76681 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9797E8BCBF0E0CC42D1F1AC0 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		7F04BA801ABB8DBC00A62B19 /* CreateMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F04BA7F1ABB8DBC00A62B19 /* CreateMoodViewController.swift */; };
 		7F4157741AB7EC710038AA62 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4157731AB7EC710038AA62 /* OAuth.swift */; };
 		7F6C7CA31AAE7F13002C2D6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CA21AAE7F13002C2D6C /* AppDelegate.swift */; };
 		7F6C7CA61AAE7F13002C2D6C /* letseat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CA41AAE7F13002C2D6C /* letseat.xcdatamodeld */; };
@@ -18,9 +19,9 @@
 		7F6C7CBC1AAE7F13002C2D6C /* letseatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CBB1AAE7F13002C2D6C /* letseatTests.swift */; };
 		7FB725CB1AB411A200129F80 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB725CA1AB411A200129F80 /* YelpClient.swift */; };
 		7FC8FBDF1AB4B5480024E83D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8FBDE1AB4B5480024E83D /* DetailViewController.swift */; };
-		7FC8FBE31AB4F3DB0024E83D /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8FBE21AB4F3DB0024E83D /* MenuButton.swift */; };
 		7FC8FBEB1AB508260024E83D /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FC8FBEA1AB508260024E83D /* BusinessCell.xib */; };
 		7FC8FBED1AB512CC0024E83D /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8FBEC1AB512CC0024E83D /* BusinessCell.swift */; };
+		7FCE5C161ABBE6B500A68671 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE5C151ABBE6B500A68671 /* Location.swift */; };
 		7FE10A131AB3BA8C00B09F50 /* LetsEatNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */; };
 		7FE10A151AB3C16C00B09F50 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE10A141AB3C16C00B09F50 /* MapKit.framework */; };
 		7FE10A191AB3C23A00B09F50 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		7C12A6A1B71E44D3D2259298 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7F0396091AB0009300AFD33C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7F04BA7F1ABB8DBC00A62B19 /* CreateMoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMoodViewController.swift; sourceTree = "<group>"; };
 		7F4157731AB7EC710038AA62 /* OAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
 		7F6C7C9D1AAE7F13002C2D6C /* letseat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = letseat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C7CA11AAE7F13002C2D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,9 +61,9 @@
 		7FB725CA1AB411A200129F80 /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		7FB725CC1AB495E100129F80 /* letseat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "letseat-Bridging-Header.h"; sourceTree = "<group>"; };
 		7FC8FBDE1AB4B5480024E83D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		7FC8FBE21AB4F3DB0024E83D /* MenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		7FC8FBEA1AB508260024E83D /* BusinessCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessCell.xib; sourceTree = "<group>"; };
 		7FC8FBEC1AB512CC0024E83D /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
+		7FCE5C151ABBE6B500A68671 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetsEatNavigationBar.swift; sourceTree = "<group>"; };
 		7FE10A141AB3C16C00B09F50 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				7FF11CA81AB0A1DA00BDB868 /* MoodListTableViewController.swift */,
 				7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */,
 				7FC8FBDE1AB4B5480024E83D /* DetailViewController.swift */,
+				7F04BA7F1ABB8DBC00A62B19 /* CreateMoodViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -197,8 +200,8 @@
 				7FF11CAD1AB0D67900BDB868 /* HamburgerButton.swift */,
 				7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */,
 				7FF11CAA1AB0BE9400BDB868 /* Mood.swift */,
-				7FC8FBE21AB4F3DB0024E83D /* MenuButton.swift */,
 				7FC8FBEC1AB512CC0024E83D /* BusinessCell.swift */,
+				7FCE5C151ABBE6B500A68671 /* Location.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				TargetAttributes = {
 					7F6C7C9C1AAE7F13002C2D6C = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = PK9Z8762HB;
 					};
 					7F6C7CB41AAE7F13002C2D6C = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -372,11 +376,12 @@
 				7F6C7CA61AAE7F13002C2D6C /* letseat.xcdatamodeld in Sources */,
 				7FF11CA91AB0A1DA00BDB868 /* MoodListTableViewController.swift in Sources */,
 				7FE10A191AB3C23A00B09F50 /* PlacesViewController.swift in Sources */,
+				7FCE5C161ABBE6B500A68671 /* Location.swift in Sources */,
 				7F6C7CA31AAE7F13002C2D6C /* AppDelegate.swift in Sources */,
-				7FC8FBE31AB4F3DB0024E83D /* MenuButton.swift in Sources */,
 				7FF11CAE1AB0D67900BDB868 /* HamburgerButton.swift in Sources */,
 				7FC8FBDF1AB4B5480024E83D /* DetailViewController.swift in Sources */,
 				7FB725CB1AB411A200129F80 /* YelpClient.swift in Sources */,
+				7F04BA801ABB8DBC00A62B19 /* CreateMoodViewController.swift in Sources */,
 				7FE10A131AB3BA8C00B09F50 /* LetsEatNavigationBar.swift in Sources */,
 				7F4157741AB7EC710038AA62 /* OAuth.swift in Sources */,
 			);
@@ -503,6 +508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = letseat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -518,6 +524,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = letseat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

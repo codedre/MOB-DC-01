@@ -10,11 +10,15 @@ import UIKit
 import MapKit
 import Alamofire
 import SwiftyJSON
+import Haneke
+
 
 class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
+    
+    var navTitle:String?
     
     let accessKey = "&key=AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs"
     var query = "pizza+in+washington,dc"
@@ -74,11 +78,14 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         transform = CGAffineTransformScale(transform, 0.65, 0.65)
         
         self.menuButtom.transform = transform
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(customView: self.menuButtom), animated: true)
+//        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(customView: self.menuButtom), animated: true)
+        self.navigationItem.title = navTitle!
+
+
         
-        self.navigationItem.title = "Happy"
         let titleColor: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.navigationController?.navigationBar.titleTextAttributes = titleColor
+        
     }
     
     // toogle for button animation
@@ -152,10 +159,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
                     let category = cat.string
                     all.append(category!)
                     complete = ", ".join(all)
-                    //cell.setCategories(category!)
                 }
-//                let category = categories[].string
-                println(complete)
                 cell.setCategories(complete)
                 
             }
@@ -169,15 +173,23 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if let jsonDict = self.jsonObj {
+            if let placeID = jsonDict["results"][indexPath.row]["place_id"].string {
+                self.performSegueWithIdentifier("showDetails", sender: placeID)
+            }
+        }
     }
-    */
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let placeID = sender as? String {
+            var destinationViewController = segue.destinationViewController as DetailViewController
+            destinationViewController.placeId = placeID
+        }
+        
+    }
+
 
 }
