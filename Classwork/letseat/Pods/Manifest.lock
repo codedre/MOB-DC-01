@@ -1,7 +1,6 @@
 PODS:
   - Alamofire (1.1.4)
   - Haneke (1.0.1)
-  - OAuthSwift (0.3.2)
   - pop (1.0.7)
   - Snap (0.0.6)
   - SwiftyJSON (2.1.3)
@@ -9,7 +8,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`)
   - Haneke (from `https://github.com/Haneke/Haneke.git`)
-  - OAuthSwift (~> 0.3.0)
   - pop (from `https://github.com/facebook/pop.git`)
   - Snap (from `https://github.com/Masonry/Snap.git`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
@@ -46,7 +44,6 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
   Haneke: d60be8b96b228633b24708dd153169d6849d6f78
-  OAuthSwift: 57c82d2a5b505cc4038b0be439ca2fc796b92ba6
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   Snap: c691705e45df9cae55cebedde52013683588db52
   SwiftyJSON: a561c2a840121085bec8a2dfeac97a360fc66901

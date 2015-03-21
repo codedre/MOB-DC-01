@@ -10,50 +10,101 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import pop
+import MapKit
 
 class DetailViewController: UIViewController {
 
     
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var ratingImageView: UIImageView!
     @IBOutlet weak var bottomSquareWrapper: UIView!
     @IBOutlet weak var imageView: UIImageView!
     var slideOut: UIView?
     var slideOutTrailingConstraint:NSLayoutConstraint?
     var isInBackground: Bool = false
     
+    var location:baseLocation?
     let accessKey = "&key=AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs"
-    var query = "pizza+in+washington,dc"
     var placeId: String?
-    var jsonObj: JSON?
+    var results:[String: JSON] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         googleplaces()
-        
         
         //createSlideOut()
         
     }
     
     func getBusinessDetails(){
+        if let rating = self.results["rating"]?.float {
+            self.location?.rating = rating
+            setRatingImage(rating)
+        }
+        
+        if let images = self.results["photos"]?.arrayValue {
+            for (var i = 0; i < images.count; ++i)  {
+                var image = images[i]["photo_reference"].string
+                self.location?.details?.pictures[i] = image!
+            }
+        }
+        
+        if let phoneNumber = self.results["formatted_phone_number"]?.string {
+            self.location?.details?.phone = phoneNumber
+        }
+        
+        if let web = self.results["website"]?.URL {
+            self.location?.details?.website = web
+        }
+        
+        if let hours = self.results["opening_hours"]?.dictionary {
+            if let weekHours = hours["weekday_text"]?.arrayValue {
+                for day in weekHours {
+                    self.location?.details?.hours[7] = day.string!
+                }
+                
+            }
+        }
+        
+        if let reviews = self.results["reviews"]?.arrayValue {
+            for (var i = 0; i < 5; ++i) {
+                self.location?.reviews?.author[i] = reviews[i]["author_name"].string!
+                self.location?.reviews?.rating[i] = reviews[i]["rating"].float!
+                self.location?.reviews?.review[i] = reviews[i]["text"].string!
+                self.location?.reviews?.time[i] = reviews[i]["time"].int!
+            }
+        }
+        
+        update()
         
     }
     
     func googleplaces() {
-        Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(self.placeId)\(self.accessKey)").responseJSON { (request, response, json, error) in
+        Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(self.placeId!)\(self.accessKey)").responseJSON { (request, response, json, error) in
             if (json != nil) {
-                self.jsonObj = JSON(json!)
-                if let jsonDict = self.jsonObj {
-                    if let status = jsonDict["status"].string {
-                        if status == "OK" {
+                var jsonObj = JSON(json!)
+                if let status = jsonObj["status"].string {
+                    if status == "OK" {
+                        if let results = jsonObj["result"].dictionary {
+                            self.results = results
                             self.getBusinessDetails()
-                        } else{
-                            println(status)
-                            return
+                            
+                            dispatch_async(dispatch_get_main_queue(), {
+                                
+                            })
                         }
+                    } else{
+                        println(status)
+                        return
                     }
                 }
             }
+//            println(request)
         }
+    }
+    
+    func update() {
+        
     }
     
     func createSlideOut() {
@@ -94,15 +145,74 @@ class DetailViewController: UIViewController {
         self.view.addConstraint(self.slideOutTrailingConstraint!)
     }
     
-    @IBAction func ratingSlideOutToggle(sender: AnyObject) {
-        if self.isInBackground {
-            self.bringBack()
-        } else {
-            self.bringToBackground()
+    // set the correct ratings image to display in the the ratingsImageView
+    func setRatingImage(rating:Float) {
+        
+        switch rating {
+        case 1.0...1.2:
+            self.ratingImageView.image = UIImage(named: "1s")
+        case 1.3...1.7:
+            self.ratingImageView.image = UIImage(named: "1.5s")
+        case 1.8...2.2:
+            self.ratingImageView.image = UIImage(named: "2s")
+        case 2.3...2.7:
+            self.ratingImageView.image = UIImage(named: "2.5s")
+        case 2.8...3.2:
+            self.ratingImageView.image = UIImage(named: "3s")
+        case 3.3...3.7:
+            self.ratingImageView.image = UIImage(named: "3.5s")
+        case 3.8...4.2:
+            self.ratingImageView.image = UIImage(named: "4s")
+        case 4.3...4.7:
+            self.ratingImageView.image = UIImage(named: "4.5s")
+        case 4.8...5:
+            self.ratingImageView.image = UIImage(named: "5")
+        default:
+            self.ratingImageView.image = UIImage(named: "0s")
         }
         
+        self.ratingLabel.text = "\(rating)"
+    }
+    
+    @IBAction func ratingSlideOutToggleButton(sender: UIButton) {
+//        if self.isInBackground {
+//            self.bringBack()
+//        } else {
+//            self.bringToBackground()
+//        }
+        println("I was tapped")
         self.isInBackground = !self.isInBackground
     }
+    
+    @IBAction func lunchWebSiteButton(sender: UIButton) {
+        let url = self.location?.details?.website
+        //UIApplication.sharedApplication().openURL(url!)
+        println(url)
+    }
+    
+    @IBAction func openMapsButton(sender: UIButton) {
+        let mapItem = MKMapItem.mapItemForCurrentLocation()
+        
+        mapItem.openInMapsWithLaunchOptions([MKLaunchOptionsMapTypeKey: MKMapType.Standard.rawValue])
+
+    }
+    
+    @IBAction func callButton(sender: UIButton) {
+        let unformatted = self.location?.details?.phone
+        if unformatted != nil {
+            // all this just to get some digits 😩
+            var convert:NSString = "\(unformatted!)"
+            convert = convert.stringByReplacingOccurrencesOfString("-", withString: "")
+            convert = convert.stringByReplacingOccurrencesOfString("(", withString: "")
+            convert = convert.stringByReplacingOccurrencesOfString(")", withString: "")
+            let formatted = convert.stringByReplacingOccurrencesOfString(" ", withString: "")
+            
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(formatted)")!)
+        }
+        
+
+    }
+    
     
     func bringBack() {
 //        //animation, self.scrollview goes back to scale of 1.0

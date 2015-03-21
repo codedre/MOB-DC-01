@@ -8,22 +8,35 @@
 
 import Foundation
 
-struct Location {
-    var phone:String = ""
+struct baseLocation {
     var name:String = ""
-    var latitude:Float?
-    var longitude:Float?
-    var rating: Float?
-    var types: [String] = []
-    var priceLevel: Int = 0
+    var rating: Float = 0.0
+    var types: String = ""
+    var priceLevel: String = ""
     var Id:String = ""
-    var pictures: [String] = []
-    var hours: [String] = []
-    var website: NSURL?
-    var status:String = ""
-    var reviews:[String] = []
     var icon:NSURL?
     var open:Bool = false
     var address:String = ""
-    
+    var details:detailedLocation?
+    var reviews:Reviews?
+
+}
+
+struct detailedLocation {
+    var address:String = ""
+    var hours: [String] = []
+    var pictures: [String] = []
+    var website: NSURL? 
+    var latitude:Float = 0.0
+    var longitude:Float = 0.0
+    var rating: Float = 0.0
+    var phone:String = ""
+    var status:String = ""
+}
+
+struct Reviews {
+    var author: [String] = []
+    var rating: [Float] = []
+    var review: [String] = []
+    var time: [Int] = []
 }

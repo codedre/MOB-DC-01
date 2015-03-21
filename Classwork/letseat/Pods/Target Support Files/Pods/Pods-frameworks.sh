@@ -50,7 +50,6 @@ code_sign() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Alamofire.framework'
   install_framework 'Haneke.framework'
-  install_framework 'OAuthSwift.framework'
   install_framework 'Snap.framework'
   install_framework 'SwiftyJSON.framework'
   install_framework 'pop.framework'
@@ -58,7 +57,6 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Alamofire.framework'
   install_framework 'Haneke.framework'
-  install_framework 'OAuthSwift.framework'
   install_framework 'Snap.framework'
   install_framework 'SwiftyJSON.framework'
   install_framework 'pop.framework'

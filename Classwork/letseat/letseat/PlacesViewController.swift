@@ -11,63 +11,121 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 import Haneke
+import CoreLocation
 
 
-class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     
-    var navTitle:String?
+    let locman = CLLocationManager()
+    let searchRadius: CLLocationDistance = 500
+    let currentLocation: CLLocation?
     
-    let accessKey = "&key=AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs"
-    var query = "pizza+in+washington,dc"
+    
+    var navTitle:String?
+    var query:String? 
+    var currentLoc = ""
+    
+    
+    var location:baseLocation?
+    let accessKey = "&key=AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs" //GooglePlaces[accessKey]
     var menuButtom: HamburgerButton! = nil
-//    var places: [String]? = []
-    var jsonObj: JSON?
+    var results:[JSON]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //drawMap()
-        mapView.showsUserLocation = true
-        navigation()
+        drawMap()
         googleplaces()
+        navigation()
         self.resultsTableView.registerNib(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "cell")
+        
     }
     
     
     
     func googleplaces() {
-        Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/place/textsearch/json?query=\(query)\(accessKey)").responseJSON { (request, response, json, error) in
+        Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/place/textsearch/json?location=\(self.currentLoc)&radius=\(self.searchRadius)&types=food&query=\(self.query!)\(self.accessKey)").responseJSON { (request, response, json, error) in
             if (json != nil) {
-                self.jsonObj = JSON(json!)
-                
-                dispatch_async(dispatch_get_main_queue(), {
+                var jsonObj = JSON(json!)
+                if let results = jsonObj["results"].arrayValue as [JSON]? {
+                    self.results = results
+                    
+                   dispatch_async(dispatch_get_main_queue(), {
                     self.resultsTableView.reloadData()
-                })
-            } else {
-                println(error)
+                   }) 
+                }
             }
+            println(error)
+            println(response)
+            println(request)
         }
     }
     
     // draw map to view
     func drawMap() {
+        self.mapView.mapType = MKMapType.Standard
+        determineLocStatus()
+
+        let initialLocation = CLLocation(latitude: 38.904832, longitude: -77.033981)
+        centerMapOnLocation(initialLocation)
+        self.mapView.showsUserLocation = true
+        self.mapView.delegate = self
         
-        var latDelta: CLLocationDegrees = 0.007
-        var longDelta: CLLocationDegrees = 0.007
+        self.locman.delegate = self
+        self.locman.desiredAccuracy = kCLLocationAccuracyBest
+        self.locman.activityType = CLActivityType.Fitness
+        self.locman.startUpdatingLocation()
         
-        var theRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, span: MKCoordinateSpanMake(latDelta, longDelta))
+        let coordinates = self.locman.location
+        self.currentLoc = "\(coordinates.coordinate.latitude),\(coordinates.coordinate.longitude)"
         
-        self.mapView.setRegion(theRegion, animated: true)
+    }
+    
+    @IBAction func showCurrentLocation(){
+        determineLocStatus()
+        self.mapView.userTrackingMode = MKUserTrackingMode.Follow
+        self.mapView.showsUserLocation = true
+        googleplaces()
         
-//        var placeAnnotation = MKPointAnnotation()
-//        placeAnnotation.coordinate = churchLocation
-//        placeAnnotation.title = "GA"
-//        placeAnnotation.subtitle = "is right here"
-//        
-//        self.mapView.addAnnotation(placeAnnotation)
+    }
+    
+    func determineLocStatus() -> Bool {
+        let isOk = CLLocationManager.locationServicesEnabled()
+        if !isOk {
+            return true
+        }
+        
+        let status = CLLocationManager.authorizationStatus()
+        switch status {
+        case CLAuthorizationStatus.AuthorizedAlways, CLAuthorizationStatus.AuthorizedWhenInUse:
+            return true
+        case .NotDetermined:
+            self.locman.requestWhenInUseAuthorization()
+            return true
+        case .Restricted:
+            return false
+        case .Denied:
+            return false
+        }
+        
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        
+        //println("Updated location!")
+        let loc = locations.last as CLLocation
+        let coordinates = loc.coordinate
+        
+        
+//        println("you are currently at \(coordinates.latitude), \(coordinates.longitude)")
+    }
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.searchRadius, self.searchRadius)
+        self.mapView.setRegion(coordinateRegion, animated: true)
     }
     
     // add custom naviagiton items
@@ -79,7 +137,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         
         self.menuButtom.transform = transform
 //        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(customView: self.menuButtom), animated: true)
-        self.navigationItem.title = navTitle!
+        self.navigationItem.title = navTitle?
 
 
         
@@ -108,9 +166,9 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let jsonData = self.jsonObj {
-            let count = jsonData["results"].count
-            return count
+        if self.results != nil {
+            let count = self.results?.count
+            return count!
         }
         return 0
     }
@@ -118,66 +176,68 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:BusinessCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as BusinessCell
-//        cell.reset()
-        // Sets each cell to equal each item in the array
-        if let jsonDict = self.jsonObj {
-            // get images for each business
-            if let imageString = jsonDict["results"][indexPath.row]["photos"][0]["photo_reference"].string  {
-                
-                let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=70&photoreference=\(imageString)\(self.accessKey)")
-                cell.thumbImageView?.hnk_setImageFromURL(url!)
-            }
-            // set label to each business name
-            cell.nameLabel?.text = jsonDict["results"][indexPath.row]["name"].string
-            
-            // get price level
-            if let priceLevel = jsonDict["results"][indexPath.row]["price_level"].int {
-                let money: Character = "$"
-                cell.priceLabel.text = String(count: priceLevel, repeatedValue: money)
-            }
-            
-            // rating image
-            if let ratingLevel = jsonDict["results"][indexPath.row]["rating"].float {
-                cell.setRatingImage(ratingLevel)
-            }
-            
-            // rating Label
-            if let status = jsonDict["results"][indexPath.row]["opening_hours"]["open_now"].bool {
-                cell.setStatus(status)
-            }
-            
-            // address
-            if let address = jsonDict["results"][indexPath.row]["formatted_address"].string {
-                cell.setAdd(address)
-            }
-            
-            // categories
-            if let categories = jsonDict["results"][indexPath.row]["types"].array {
-                var complete = ""
-                var all: [String] = []
-                for cat in categories {
-                    let category = cat.string
-                    all.append(category!)
-                    complete = ", ".join(all)
-                }
-                cell.setCategories(complete)
-                
-            }
-            
-
-        } else{
-            println("something went wrong")
+        
+        if let imageString = self.results?[indexPath.row]["photos"][0]["photo_reference"].string  {
+            self.location?.details?.pictures.append(imageString)
+            let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=70&photoreference=\(imageString)\(self.accessKey)")
+            cell.thumbImageView.hnk_setImageFromURL(url!)
         }
         
+        // set label to each business name
+        if let name = self.results?[indexPath.row]["name"].string {
+            self.location?.name = name
+            cell.nameLabel.text = name
+        }
+        
+        // get price level
+        if let priceLevel = self.results?[indexPath.row]["price_level"].int {
+            let money: Character = "$"
+            self.location?.priceLevel = String(count: priceLevel, repeatedValue: money)
+            cell.priceLabel.text = String(count: priceLevel, repeatedValue: money)
+        }
+        
+        // rating image
+        if let ratingLevel = self.results?[indexPath.row]["rating"].floatValue {
+            self.location?.rating = ratingLevel
+            cell.setRatingImage(ratingLevel)
+        }
+        
+        // rating Label
+        if let status = self.results?[indexPath.row]["opening_hours"]["open_now"].bool {
+            self.location?.open = status
+            cell.setStatus(status)
+        }
+        
+        // address
+        if let address = self.results?[indexPath.row]["formatted_address"].string {
+            self.location?.address = address
+            cell.addressLabel.text = address
+        }
+        
+        // categories
+        if let categories = self.results?[indexPath.row]["types"].array {
+            var complete = ""
+            var all: [String] = []
+            for cat in categories {
+                let category = cat.string
+                all.append(category!)
+                complete = ", ".join(all)
+            }
+            self.location?.types = complete
+            cell.categoryLabel.text = complete
+            
+        }
         return cell
         
     }
     
+    
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if let jsonDict = self.jsonObj {
-            if let placeID = jsonDict["results"][indexPath.row]["place_id"].string {
-                self.performSegueWithIdentifier("showDetails", sender: placeID)
+        if let jsonDict = self.results {
+            if let placeID = jsonDict[indexPath.row]["place_id"].string {
+                self.performSegueWithIdentifier("showPlaceDetails", sender: placeID)
             }
         }
     }

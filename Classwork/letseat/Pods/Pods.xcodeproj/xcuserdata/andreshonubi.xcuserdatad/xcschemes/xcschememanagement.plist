@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-OAuthSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Snap.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,37 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>81A8A6F43FDEBCCD23696410</key>
+		<key>1E0CB2C265465C6F0E602FD6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9535F735AACC1864FD9F7CEE</key>
+		<key>2B428E39BA1654E716F68793</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C82F7D168A2D192971232B7F</key>
+		<key>55959B8F870AF711B7623405</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CDFB04FD2D256CF7C2E73710</key>
+		<key>8A931C57B32371764C0119F9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D820298FFE9FDD55BD1D5536</key>
+		<key>AAE04E1D7CCE9BBB7C6C5982</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC480E4A60FECC59295AEE73</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F54BE42CFEDC32BD82C1A77D</key>
+		<key>E1902AD76C37EA7940D2D8A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

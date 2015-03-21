@@ -19,6 +19,7 @@ class BusinessCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     
+       
     override func prepareForReuse() {
         let defaultImage = UIImage(named: "Rectangle 1 + 1426551380_Food-Dome")
         self.thumbImageView.image = defaultImage
@@ -36,26 +37,19 @@ class BusinessCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    // set categories
-    func setCategories(category: String) {
-        self.categoryLabel.text = category
-    }
-    
-    // set address
-    func setAdd(address: String) {
-        self.addressLabel.text = address
-    }
     
     // set open or closed status for business
-    func setStatus(status: Bool?){
+    func setStatus(status:Bool){
         if status == true {
             self.ratingLabel.text = "Open"
             self.ratingLabel.textColor = UIColor(red: 23/255, green: 144/255, blue: 25/255, alpha: 1)
         }
     }
     
+    
     // set the correct ratings image to display in the the ratingsImageView
-    func setRatingImage(rating: Float) {
+    func setRatingImage(rating:Float) {
+                
         switch rating {
         case 1.0...1.2:
             self.ratingImageView.image = UIImage(named: "1s")

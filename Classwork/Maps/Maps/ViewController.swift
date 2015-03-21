@@ -147,7 +147,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBAction func showLocationInMapsApp(sender: UIButton) {
         let mapItem = MKMapItem.mapItemForCurrentLocation()
-        
+
         mapItem.openInMapsWithLaunchOptions([MKLaunchOptionsMapTypeKey: MKMapType.Standard.rawValue])
 
     }

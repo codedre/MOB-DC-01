@@ -10,13 +10,16 @@ import Foundation
 
 
 class Mood {
-    var moodArrary = [
-        ["mood": "happy", "food": "steak"],
-        ["mood": "sad", "food": "burgers"],
-        ["mood": "heathy", "food": "salad"],
-        ["mood": "sick", "food": "pho"],
-        ["mood": "ethinc", "food": "thia"],
-        ["mood": "comfort", "food": "chinese"],
-        ["mood": "fun", "food": "ice cream"]
+    var moodArrary = ["HAPPY 😃", "SAD 😔", "HEALTHY 💊", "SICK 😷", "ETHNIC 👳", "COMFORT 🛀", "FUN 😎"]
+
+    var foodArrary = [
+        ["HAPPY 😃": "steak"],
+        ["SAD 😔": "burgers"],
+        ["HEALTHY 💊": "salad"],
+        ["SICK 😷": "pho"],
+        ["ETHNIC 👳": "thia"],
+        ["COMFORT 🛀": "chinese"],
+        ["FUN 😎": "ice+cream"]
     ]
 }
+

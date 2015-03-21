@@ -7,16 +7,13 @@
 //
 
 import UIKit
-import Alamofire
-import Snap
-
-let accessToken = "AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs"
 
 class MoodListTableViewController: UITableViewController {
-    var moodArrary = ["HAPPY 😃", "SAD 😔", "HEALTHY 💊","SICK 😷","ETHNIC 👳","COMFORT 🛀","FUN 😎"]
+    var mood = Mood()
     var button: HamburgerButton! = nil
     var selectedIndexPath:NSIndexPath?
-
+    var moodList: [String] = []
+    
     //add custom button
     func menuButton() {
         
@@ -24,7 +21,7 @@ class MoodListTableViewController: UITableViewController {
         self.button.addTarget(self, action: "toggle:", forControlEvents: .TouchUpInside)
         var transform = self.button.transform
         transform = CGAffineTransformScale(transform, 0.65, 0.65)
-        
+
         self.button.transform = transform
         
         self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(customView: self.button), animated: true)
@@ -32,6 +29,17 @@ class MoodListTableViewController: UITableViewController {
     
     func toggle(button:UIButton) {
          self.button.showsMenu = !self.button.showsMenu
+    }
+    
+    func searchQuery(currentMood:String?) ->String{
+        var food : String?
+            for mood in self.mood.foodArrary{
+                if let foods = mood[currentMood!] {
+                    food = foods
+                    return food!
+                }
+            }
+        return "donuts"
     }
 
     
@@ -56,7 +64,7 @@ class MoodListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return self.moodArrary.count
+        return self.mood.moodArrary.count
     }
 
     
@@ -67,7 +75,7 @@ class MoodListTableViewController: UITableViewController {
         cell.textLabel?.textAlignment = NSTextAlignment.Center
         cell.textLabel?.font = UIFont.systemFontOfSize(50.0)
 
-        cell.textLabel?.text = self.moodArrary[indexPath.row]
+        cell.textLabel?.text = self.mood.moodArrary[indexPath.row]
         return cell
         
     }
@@ -77,7 +85,7 @@ class MoodListTableViewController: UITableViewController {
         // get current text label title
         let indexPath = tableView.indexPathForSelectedRow()
         let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!
-        self.performSegueWithIdentifier("showDetail", sender: currentCell)
+        self.performSegueWithIdentifier("showPlace", sender: currentCell)
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -85,6 +93,7 @@ class MoodListTableViewController: UITableViewController {
         let selectedCell = sender as UITableViewCell
         if let destionationVC = segue.destinationViewController as? PlacesViewController {
             destionationVC.navTitle = selectedCell.textLabel?.text
+            destionationVC.query = searchQuery(selectedCell.textLabel?.text)
         }
         
     }
