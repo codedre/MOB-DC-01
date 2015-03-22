@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 import Haneke
 import CoreLocation
+import Foundation
 
 
 class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
@@ -19,24 +20,25 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     
+    let accessKey = "&key=AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs" //GooglePlaces[accessKey]
+
     let locman = CLLocationManager()
-    let searchRadius: CLLocationDistance = 500
+    let searchRadius: CLLocationDistance = 1000
     let currentLocation: CLLocation?
     
     
     var navTitle:String?
     var query:String? 
     var currentLoc = ""
+    var distance: [AnyObject] = []
     
     
     var location:baseLocation?
-    let accessKey = "&key=AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs" //GooglePlaces[accessKey]
     var menuButtom: HamburgerButton! = nil
     var results:[JSON]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         drawMap()
         googleplaces()
         navigation()
@@ -45,7 +47,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     }
     
     
-    
+    // call api
     func googleplaces() {
         Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/place/textsearch/json?location=\(self.currentLoc)&radius=\(self.searchRadius)&types=food&query=\(self.query!)\(self.accessKey)").responseJSON { (request, response, json, error) in
             if (json != nil) {
@@ -53,9 +55,11 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
                 if let results = jsonObj["results"].arrayValue as [JSON]? {
                     self.results = results
                     
+
                    dispatch_async(dispatch_get_main_queue(), {
                     self.resultsTableView.reloadData()
-                   }) 
+                    self.drawMap()
+                   })
                 }
             }
             println(error)
@@ -64,13 +68,17 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         }
     }
     
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////// MAP SECTION ///////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     // draw map to view
     func drawMap() {
         self.mapView.mapType = MKMapType.Standard
         determineLocStatus()
 
-        let initialLocation = CLLocation(latitude: 38.904832, longitude: -77.033981)
-        centerMapOnLocation(initialLocation)
         self.mapView.showsUserLocation = true
         self.mapView.delegate = self
         
@@ -81,7 +89,15 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         
         let coordinates = self.locman.location
         self.currentLoc = "\(coordinates.coordinate.latitude),\(coordinates.coordinate.longitude)"
+        centerMapOnLocation(coordinates)
         
+    }
+    
+    func setMapMarkers(coordinates: CLLocationCoordinate2D) {
+        var mapMarker = MKPointAnnotation()
+        mapMarker.coordinate = coordinates
+        self.mapView.addAnnotation(mapMarker)
+        self.mapView.reloadInputViews()
     }
     
     @IBAction func showCurrentLocation(){
@@ -118,15 +134,47 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         //println("Updated location!")
         let loc = locations.last as CLLocation
         let coordinates = loc.coordinate
-        
-        
-//        println("you are currently at \(coordinates.latitude), \(coordinates.longitude)")
+    
     }
     
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.searchRadius, self.searchRadius)
         self.mapView.setRegion(coordinateRegion, animated: true)
+        
+        //coodinates
+        if self.results != nil {
+            for (var index = 0; index < self.results?.count; ++index) {
+                if let location = self.results?[index]["geometry"]["location"].dictionary {
+                    var lat: CLLocationDegrees?
+                    var lng: CLLocationDegrees?
+                    
+                    if let latitude = location["lat"]?.double{
+                        lat = latitude
+                    }
+                    if let longitude = location["lng"]?.double{
+                        lng = longitude
+                    }
+                    var coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat!, lng!)
+                    setMapMarkers(coordinates)
+                    
+                    // Calculate distance to current location in miles
+                    var currentCoordinates:CLLocation = CLLocation(latitude: lat!, longitude: lng!)
+                    var foo: CLLocationDistance = currentCoordinates.distanceFromLocation(self.locman.location) / 1609.344
+                    self.distance.append(foo)
+                }
+            }
+        }
     }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////// GENERAL SECTION ////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     
     // add custom naviagiton items
     func navigation() {
@@ -156,6 +204,15 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////// TABLE VIEW SECTION ////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     
     // TableView Settings
@@ -214,6 +271,22 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
             cell.addressLabel.text = address
         }
         
+        //coodinates
+        if let location = self.results?[indexPath.row]["geometry"]["location"].dictionary {
+            if let latitude = location["lat"]?.float{
+                self.location?.details?.latitude = latitude
+            }
+            if let longitude = location["lng"]?.float{
+                self.location?.details?.longitude = longitude
+            }
+            
+            // set distance label
+            var dist = self.distance[indexPath.row] as Double
+            var convert = dist.format(".2")
+            cell.distanceLabel.text = "\(convert) miles"
+        }
+        
+        
         // categories
         if let categories = self.results?[indexPath.row]["types"].array {
             var complete = ""
@@ -234,22 +307,51 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        //var objects: [AnyObject] = []
         if let jsonDict = self.results {
             if let placeID = jsonDict[indexPath.row]["place_id"].string {
                 self.performSegueWithIdentifier("showPlaceDetails", sender: placeID)
             }
         }
+        
+        // Fun test to pass more than one object
+//        let indexPath = tableView.indexPathForSelectedRow()
+//        let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as BusinessCell!
+//        
+//
+//        objects.append(currentCell.ratingImageView)
+        //println(objects)
+        //self.performSegueWithIdentifier("showPlaceDetails", sender: objects)
+
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destinationViewController = segue.destinationViewController as DetailViewController
+        
         if let placeID = sender as? String {
-            var destinationViewController = segue.destinationViewController as DetailViewController
             destinationViewController.placeId = placeID
         }
-        
+            
+//            if let ratingImage = passObj[1] as? UIImageView {
+//                destinationViewController.ratingImageView = ratingImage
+//            }
+//        }
+     
     }
 
+}
 
+// to set double precision 
+// credit: Anton Tcholakov on Stackoverflow : http://stackoverflow.com/questions/24051314/precision-string-format-specifier-in-swift
+extension Int {
+    func format(f: String) -> String {
+        return NSString(format: "%\(f)d", self)
+    }
+}
+
+extension Double {
+    func format(f: String) -> String {
+        return NSString(format: "%\(f)f", self)
+    }
 }

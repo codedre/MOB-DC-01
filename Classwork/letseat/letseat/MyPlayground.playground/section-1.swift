@@ -2,37 +2,12 @@
 
 import UIKit
 
-class Mood {
-    var moodArrary = [
-        ["mood": "happy", "food": "steak"],
-        ["mood": "sad", "food": "burgers"],
-        ["mood": "heathy", "food": "salad"],
-        ["mood": "sick", "food": "pho"],
-        ["mood": "ethinc", "food": "thia"],
-        ["mood": "comfort", "food": "chinese"],
-        ["mood": "fun", "food": "ice cream"]
-    ]
-    
-    func moodLabels () {
-        for moods in moodArrary {
-            println(moods["mood"]!)
-        }
-    }
+var objects: [AnyObject] = ["adfadfadfad", "245245245"]
+
+var sender: AnyObject?
+
+sender = objects
+
+if let passObj = sender as? NSArray {
+    println(passObj[0])
 }
-
-var moodTitle = Mood()
-
-moodTitle.moodLabels()
-
-var moodArrary = [
-    ["mood": "happy", "food": "steak"],
-    ["mood": "sad", "food": "burgers"],
-    ["mood": "heathy", "food": "salad"],
-    ["mood": "sick", "food": "pho"],
-    ["mood": "ethinc", "food": "thia"],
-    ["mood": "comfort", "food": "chinese"],
-    ["mood": "fun", "food": "ice cream"]
-]
-
-moodArrary[0]["food"]!
-

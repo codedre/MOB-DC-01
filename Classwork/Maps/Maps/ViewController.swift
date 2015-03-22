@@ -103,6 +103,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let userLoc = self.map.userLocation
         let loc = userLoc.location
+    
         
         if loc == nil {
             println("I don't know where you are!")

@@ -15,6 +15,7 @@ import MapKit
 class DetailViewController: UIViewController {
 
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var ratingImageView: UIImageView!
     @IBOutlet weak var bottomSquareWrapper: UIView!
@@ -31,14 +32,13 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         googleplaces()
-        
+
         //createSlideOut()
         
     }
     
     func getBusinessDetails(){
         if let rating = self.results["rating"]?.float {
-            self.location?.rating = rating
             setRatingImage(rating)
         }
         
@@ -47,14 +47,6 @@ class DetailViewController: UIViewController {
                 var image = images[i]["photo_reference"].string
                 self.location?.details?.pictures[i] = image!
             }
-        }
-        
-        if let phoneNumber = self.results["formatted_phone_number"]?.string {
-            self.location?.details?.phone = phoneNumber
-        }
-        
-        if let web = self.results["website"]?.URL {
-            self.location?.details?.website = web
         }
         
         if let hours = self.results["opening_hours"]?.dictionary {
@@ -66,20 +58,21 @@ class DetailViewController: UIViewController {
             }
         }
         
+        
         if let reviews = self.results["reviews"]?.arrayValue {
-            for (var i = 0; i < 5; ++i) {
-                self.location?.reviews?.author[i] = reviews[i]["author_name"].string!
-                self.location?.reviews?.rating[i] = reviews[i]["rating"].float!
-                self.location?.reviews?.review[i] = reviews[i]["text"].string!
-                self.location?.reviews?.time[i] = reviews[i]["time"].int!
+            if reviews.isEmpty {} else {
+                for (var i = 0; i < 5; ++i) {
+                    self.location?.reviews?.author[i] = reviews[i]["author_name"].string!
+                    self.location?.reviews?.rating[i] = reviews[i]["rating"].float!
+                    self.location?.reviews?.review[i] = reviews[i]["text"].string!
+                    self.location?.reviews?.time[i] = reviews[i]["time"].int!
+                }
             }
         }
-        
-        update()
-        
     }
     
     func googleplaces() {
+        println(self.placeId)
         Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(self.placeId!)\(self.accessKey)").responseJSON { (request, response, json, error) in
             if (json != nil) {
                 var jsonObj = JSON(json!)
@@ -94,12 +87,12 @@ class DetailViewController: UIViewController {
                             })
                         }
                     } else{
-                        println(status)
+                        println(status + "this is a status")
                         return
                     }
                 }
             }
-//            println(request)
+            println(request)
         }
     }
     
@@ -185,9 +178,10 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func lunchWebSiteButton(sender: UIButton) {
-        let url = self.location?.details?.website
-        //UIApplication.sharedApplication().openURL(url!)
-        println(url)
+        if let url = self.results["website"]?.URL {
+            //UIApplication.sharedApplication().openURL(url!)
+            println(url)
+        }
     }
     
     @IBAction func openMapsButton(sender: UIButton) {
@@ -198,19 +192,17 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func callButton(sender: UIButton) {
-        let unformatted = self.location?.details?.phone
-        if unformatted != nil {
-            // all this just to get some digits 😩
-            var convert:NSString = "\(unformatted!)"
+        if let phoneNumber = self.results["formatted_phone_number"]?.string {
+            var convert:NSString = "\(phoneNumber)"
             convert = convert.stringByReplacingOccurrencesOfString("-", withString: "")
             convert = convert.stringByReplacingOccurrencesOfString("(", withString: "")
             convert = convert.stringByReplacingOccurrencesOfString(")", withString: "")
             let formatted = convert.stringByReplacingOccurrencesOfString(" ", withString: "")
             
-            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(formatted)")!)
-        }
-        
 
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(formatted)")!)
+            println(formatted)
+        }
     }
     
     

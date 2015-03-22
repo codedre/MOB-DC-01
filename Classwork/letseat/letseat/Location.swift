@@ -29,7 +29,7 @@ struct detailedLocation {
     var website: NSURL? 
     var latitude:Float = 0.0
     var longitude:Float = 0.0
-    var rating: Float = 0.0
+    var rating: UIImageView?
     var phone:String = ""
     var status:String = ""
 }
