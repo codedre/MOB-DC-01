@@ -17,7 +17,7 @@ class Mood {
         ["SAD 😔": "burgers"],
         ["HEALTHY 💊": "salad"],
         ["SICK 😷": "pho"],
-        ["ETHNIC 👳": "thia"],
+        ["ETHNIC 👳": "thai"],
         ["COMFORT 🛀": "chinese"],
         ["FUN 😎": "ice+cream"]
     ]

@@ -138,7 +138,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     }
     
     func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.searchRadius, self.searchRadius)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.searchRadius * 7, self.searchRadius * 7)
         self.mapView.setRegion(coordinateRegion, animated: true)
         
         //coodinates
@@ -242,49 +242,34 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         
         // set label to each business name
         if let name = self.results?[indexPath.row]["name"].string {
-            self.location?.name = name
             cell.nameLabel.text = name
         }
         
         // get price level
         if let priceLevel = self.results?[indexPath.row]["price_level"].int {
             let money: Character = "$"
-            self.location?.priceLevel = String(count: priceLevel, repeatedValue: money)
             cell.priceLabel.text = String(count: priceLevel, repeatedValue: money)
         }
         
         // rating image
         if let ratingLevel = self.results?[indexPath.row]["rating"].floatValue {
-            self.location?.rating = ratingLevel
             cell.setRatingImage(ratingLevel)
         }
         
         // rating Label
         if let status = self.results?[indexPath.row]["opening_hours"]["open_now"].bool {
-            self.location?.open = status
             cell.setStatus(status)
         }
         
         // address
         if let address = self.results?[indexPath.row]["formatted_address"].string {
-            self.location?.address = address
             cell.addressLabel.text = address
         }
         
-        //coodinates
-        if let location = self.results?[indexPath.row]["geometry"]["location"].dictionary {
-            if let latitude = location["lat"]?.float{
-                self.location?.details?.latitude = latitude
-            }
-            if let longitude = location["lng"]?.float{
-                self.location?.details?.longitude = longitude
-            }
-            
-            // set distance label
-            var dist = self.distance[indexPath.row] as Double
-            var convert = dist.format(".2")
-            cell.distanceLabel.text = "\(convert) miles"
-        }
+        // set distance label
+        var dist = self.distance[indexPath.row] as Double
+        var convert = dist.format(".2")
+        cell.distanceLabel.text = "\(convert) miles"
         
         
         // categories

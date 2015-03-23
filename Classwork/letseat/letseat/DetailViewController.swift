@@ -11,15 +11,16 @@ import Alamofire
 import SwiftyJSON
 import pop
 import MapKit
+import Haneke
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var galleryTableView: UITableView!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var ratingImageView: UIImageView!
     @IBOutlet weak var bottomSquareWrapper: UIView!
-    @IBOutlet weak var imageView: UIImageView!
+
+    var galleryImage = UIImage()
     var slideOut: UIView?
     var slideOutTrailingConstraint:NSLayoutConstraint?
     var isInBackground: Bool = false
@@ -46,6 +47,7 @@ class DetailViewController: UIViewController {
             for (var i = 0; i < images.count; ++i)  {
                 var image = images[i]["photo_reference"].string
                 self.location?.details?.pictures[i] = image!
+                println(self.location?.details?.pictures[i])
             }
         }
         
@@ -62,10 +64,12 @@ class DetailViewController: UIViewController {
         if let reviews = self.results["reviews"]?.arrayValue {
             if reviews.isEmpty {} else {
                 for (var i = 0; i < 5; ++i) {
-                    self.location?.reviews?.author[i] = reviews[i]["author_name"].string!
-                    self.location?.reviews?.rating[i] = reviews[i]["rating"].float!
-                    self.location?.reviews?.review[i] = reviews[i]["text"].string!
-                    self.location?.reviews?.time[i] = reviews[i]["time"].int!
+                  //  var test = reviews[i]["author_name"].string
+//                    println(test)
+//                    self.location?.reviews?.author[i] = reviews[i]["author_name"].string!
+//                    self.location?.reviews?.rating[i] = reviews[i]["rating"].float!
+//                    self.location?.reviews?.review[i] = reviews[i]["text"].string!
+//                    self.location?.reviews?.time[i] = reviews[i]["time"].int!
                 }
             }
         }
@@ -83,7 +87,7 @@ class DetailViewController: UIViewController {
                             self.getBusinessDetails()
                             
                             dispatch_async(dispatch_get_main_queue(), {
-                                
+                                self.galleryTableView.reloadData()
                             })
                         }
                     } else{
@@ -92,7 +96,7 @@ class DetailViewController: UIViewController {
                     }
                 }
             }
-            println(request)
+            //println(request)
         }
     }
     
@@ -261,15 +265,45 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////// TABLE VIEW SECTION ////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Table view data source
+    
+     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Potentially incomplete method implementation.
+        // Return the number of sections.
+        return 1
     }
-    */
+    
+     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let photos = self.results["photos"]?.arrayValue {
+            let count = photos.count
+            return count
+        }
+        return 0
+    }
+    
+    
+     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell:DetailTableViewCell = tableView.dequeueReusableCellWithIdentifier("picCell", forIndexPath: indexPath) as DetailTableViewCell //?? DetailTableViewCell(style: .Default, reuseIdentifier: "CellIdentifier")
+        
+        if let images = self.results["photos"]?.arrayValue {
+            if let imageString = images[indexPath.row]["photo_reference"].string {
+                let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=149&photoreference=\(imageString)\(self.accessKey)")
+                cell.galleryImgView?.hnk_setImageFromURL(url!)
+            }
+        }
+        
+        
+        return cell
+        
+    }
 
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		483840BB9B415F075ED76681 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9797E8BCBF0E0CC42D1F1AC0 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7F04BA801ABB8DBC00A62B19 /* CreateMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F04BA7F1ABB8DBC00A62B19 /* CreateMoodViewController.swift */; };
+		7F4942C41ABEB18200936614 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4942C31ABEB18200936614 /* DetailTableViewCell.swift */; };
 		7F6C7CA31AAE7F13002C2D6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CA21AAE7F13002C2D6C /* AppDelegate.swift */; };
 		7F6C7CA61AAE7F13002C2D6C /* letseat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CA41AAE7F13002C2D6C /* letseat.xcdatamodeld */; };
 		7F6C7CA81AAE7F13002C2D6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CA71AAE7F13002C2D6C /* ViewController.swift */; };
@@ -21,7 +22,6 @@
 		7FC8FBED1AB512CC0024E83D /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8FBEC1AB512CC0024E83D /* BusinessCell.swift */; };
 		7FCE5C161ABBE6B500A68671 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE5C151ABBE6B500A68671 /* Location.swift */; };
 		7FCE5C181ABCBA4800A68671 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE5C171ABCBA4800A68671 /* Restaurant.swift */; };
-		7FE10A131AB3BA8C00B09F50 /* LetsEatNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */; };
 		7FE10A151AB3C16C00B09F50 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE10A141AB3C16C00B09F50 /* MapKit.framework */; };
 		7FE10A191AB3C23A00B09F50 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */; };
 		7FF11CA91AB0A1DA00BDB868 /* MoodListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF11CA81AB0A1DA00BDB868 /* MoodListTableViewController.swift */; };
@@ -45,6 +45,7 @@
 		7C12A6A1B71E44D3D2259298 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7F0396091AB0009300AFD33C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7F04BA7F1ABB8DBC00A62B19 /* CreateMoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMoodViewController.swift; sourceTree = "<group>"; };
+		7F4942C31ABEB18200936614 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		7F6C7C9D1AAE7F13002C2D6C /* letseat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = letseat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C7CA11AAE7F13002C2D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F6C7CA21AAE7F13002C2D6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +63,6 @@
 		7FC8FBEC1AB512CC0024E83D /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		7FCE5C151ABBE6B500A68671 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		7FCE5C171ABCBA4800A68671 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
-		7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetsEatNavigationBar.swift; sourceTree = "<group>"; };
 		7FE10A141AB3C16C00B09F50 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		7FF11CA81AB0A1DA00BDB868 /* MoodListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodListTableViewController.swift; sourceTree = "<group>"; };
@@ -187,10 +187,10 @@
 			isa = PBXGroup;
 			children = (
 				7FF11CAD1AB0D67900BDB868 /* HamburgerButton.swift */,
-				7FE10A121AB3BA8C00B09F50 /* LetsEatNavigationBar.swift */,
 				7FF11CAA1AB0BE9400BDB868 /* Mood.swift */,
 				7FC8FBEC1AB512CC0024E83D /* BusinessCell.swift */,
 				7FCE5C151ABBE6B500A68671 /* Location.swift */,
+				7F4942C31ABEB18200936614 /* DetailTableViewCell.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -361,6 +361,7 @@
 			files = (
 				7FF11CAB1AB0BE9400BDB868 /* Mood.swift in Sources */,
 				7FC8FBED1AB512CC0024E83D /* BusinessCell.swift in Sources */,
+				7F4942C41ABEB18200936614 /* DetailTableViewCell.swift in Sources */,
 				7F6C7CA81AAE7F13002C2D6C /* ViewController.swift in Sources */,
 				7F6C7CA61AAE7F13002C2D6C /* letseat.xcdatamodeld in Sources */,
 				7FF11CA91AB0A1DA00BDB868 /* MoodListTableViewController.swift in Sources */,
@@ -371,7 +372,6 @@
 				7FC8FBDF1AB4B5480024E83D /* DetailViewController.swift in Sources */,
 				7FCE5C181ABCBA4800A68671 /* Restaurant.swift in Sources */,
 				7F04BA801ABB8DBC00A62B19 /* CreateMoodViewController.swift in Sources */,
-				7FE10A131AB3BA8C00B09F50 /* LetsEatNavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
