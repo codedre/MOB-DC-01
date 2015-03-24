@@ -16,11 +16,14 @@ class CreateMoodViewController: UIViewController, MoodOptions, FoodOptions {
     var foodVC: CMThirdViewController?
     var moodButton = UIButton()
     var foodButton = UIButton()
+    var submitButton = UIButton()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         drawWrapper()
+        drawSubmitButton()
         drawSentence()
         
         self.optionVC = CreateMoodSecondViewController()
@@ -43,8 +46,31 @@ class CreateMoodViewController: UIViewController, MoodOptions, FoodOptions {
         gradient.frame = self.view.frame
         self.view.layer.insertSublayer(gradient, atIndex: 0)
         
+        self.navigationController?.navigationBarHidden = true
         
+        // Parallax ////////////////////////////////
+        
+        // Set vertical effect
+        var verticalMotionEffect: UIInterpolatingMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: .TiltAlongVerticalAxis)
+        verticalMotionEffect.minimumRelativeValue = -10
+        verticalMotionEffect.maximumRelativeValue = 10
+        
+        // Set horizontal effect
+        
+        var horizontalMotionEffect: UIInterpolatingMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: .TiltAlongHorizontalAxis)
+        horizontalMotionEffect.minimumRelativeValue = -10
+        horizontalMotionEffect.maximumRelativeValue = 10
+        
+        // Combination
+        
+        var combinationEffect: UIMotionEffectGroup = UIMotionEffectGroup()
+        combinationEffect.motionEffects = [horizontalMotionEffect, verticalMotionEffect]
+        self.view.addMotionEffect(combinationEffect)
 
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func drawWrapper() {
@@ -54,6 +80,20 @@ class CreateMoodViewController: UIViewController, MoodOptions, FoodOptions {
         //wrapper.delegate = self
         
         self.view.addSubview(self.wrapper!)
+        
+    }
+    
+    func drawSubmitButton() {
+        self.submitButton = UIButton(frame: CGRect(x: 40, y: 500, width: (self.view.frame.size.width)-80, height: 50))
+        self.submitButton.setTitle("LET'S EAT!", forState: .Normal)
+        self.submitButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        self.submitButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 33.0)
+        self.submitButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
+        self.submitButton.layer.cornerRadius = 25
+        self.submitButton.addTarget(self, action: "sendQuery:", forControlEvents: .TouchUpInside)
+        
+        self.view.addSubview(self.submitButton)
+        
     }
     
     func drawSentence() {
@@ -105,6 +145,16 @@ class CreateMoodViewController: UIViewController, MoodOptions, FoodOptions {
         self.wrapper!.addSubview(foodButton)
     }
     
+    func sendQuery(sender:UIButton) {
+        var query = "\(self.foodButton.currentTitle!)+food"
+        if query == "DEEP FRIED+food"{
+            var formatted = query.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            query = formatted
+        }
+        performSegueWithIdentifier("showPlace", sender: query)
+
+    }
+    
     
     func showMoodOptions(sender:UIButton) {
         self.optionVC?.view.hidden = false
@@ -121,7 +171,16 @@ class CreateMoodViewController: UIViewController, MoodOptions, FoodOptions {
     func selectedFood(title: String) {
         self.foodButton.setTitle(title, forState: .Normal)
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destinationVC = segue.destinationViewController as PlacesViewController
+        
+        if let query = sender as? String{
+            destinationVC.query = query
+            destinationVC.navTitle = "LET'S EAT"
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

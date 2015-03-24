@@ -27,7 +27,6 @@ class CMThirdViewController: UIViewController {
     var sixthOpt = UIButton()
     var seventhOpt = UIButton()
     
-    var submitButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,10 +54,6 @@ class CMThirdViewController: UIViewController {
         self.wrapper?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
         self.wrapper?.layer.cornerRadius = 20
         self.view.addSubview(self.wrapper!)
-    }
-    
-    func drawSubmitButton() {
-        self.submitButton.au
     }
     
     func drawOptions() {

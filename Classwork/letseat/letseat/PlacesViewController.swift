@@ -28,7 +28,11 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     
     
     var navTitle:String?
-    var query:String? 
+    var query:String? {
+        didSet{
+            println(query)
+        }
+    }
     var currentLoc = ""
     var distance: [AnyObject] = []
     
@@ -57,6 +61,8 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         googleplaces()
         navigation()
         self.resultsTableView.registerNib(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "cell")
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+
         
     }
     
@@ -352,11 +358,11 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
         let percentageThere = scrollView.contentOffset.y / self.maxOffset
-        println("percentage there = \(percentageThere)")
+        //println("percentage there = \(percentageThere)")
         
         if percentageThere <= 1.0 {
             let heightConstant = self.maximumMapSize - ((self.maximumMapSize - self.minimumMapSize) * percentageThere)
-            println("height constant = \(heightConstant)")
+            //println("height constant = \(heightConstant)")
             self.mapHeightConstraint.constant = heightConstant
         }
     }

@@ -187,7 +187,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func lunchWebSiteButton(sender: UIButton) {
         if let url = self.results["website"]?.URL {
-            UIApplication.sharedApplication().openURL(url)
+            performSegueWithIdentifier("web", sender: NSURLRequest(URL: url))
         }
     }
     
@@ -198,6 +198,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     }
     
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////// PHONE FUNCTION BLOCK  /////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     @IBAction func callButton(sender: UIButton) {
         if let phoneNumber = self.results["formatted_phone_number"]?.string {
             var convert:NSString = "\(phoneNumber)"
@@ -206,11 +211,23 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             convert = convert.stringByReplacingOccurrencesOfString(")", withString: "")
             let formatted = convert.stringByReplacingOccurrencesOfString(" ", withString: "")
             
+            let alertBox = UIAlertController(title: phoneNumber, message: nil, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+            })
+            let callAction = UIAlertAction(title: "Call", style: .Default, handler: { (action) -> Void in
+                UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(formatted)")!)
+                return
+            })
+            
+            alertBox.addAction(cancelAction)
+            alertBox.addAction(callAction)
+            
+            self.presentViewController(alertBox, animated: true, completion: nil)
 
-            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(formatted)")!)
-            println(formatted)
         }
     }
+    
+    
     
     
     func bringBack() {
@@ -266,6 +283,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let request = sender as? NSURLRequest {
+            var destinationViewController = segue.destinationViewController as WebViewController
+            destinationViewController.request = request
+        }
     }
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

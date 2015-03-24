@@ -17,6 +17,7 @@
 		7F6C7CAD1AAE7F13002C2D6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F6C7CAC1AAE7F13002C2D6C /* Images.xcassets */; };
 		7F6C7CB01AAE7F13002C2D6C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F6C7CAE1AAE7F13002C2D6C /* LaunchScreen.xib */; };
 		7F6C7CBC1AAE7F13002C2D6C /* letseatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CBB1AAE7F13002C2D6C /* letseatTests.swift */; };
+		7F98F1161AC1F2ED007042F5 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F98F1151AC1F2ED007042F5 /* WebViewController.swift */; };
 		7FC73C7C1AC0EF9D005E55B2 /* CreateMoodSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC73C7B1AC0EF9D005E55B2 /* CreateMoodSecondViewController.swift */; };
 		7FC73C7E1AC1B791005E55B2 /* CMThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC73C7D1AC1B791005E55B2 /* CMThirdViewController.swift */; };
 		7FC8FBDF1AB4B5480024E83D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8FBDE1AB4B5480024E83D /* DetailViewController.swift */; };
@@ -59,6 +60,7 @@
 		7F6C7CB51AAE7F13002C2D6C /* letseatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = letseatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6C7CBA1AAE7F13002C2D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F6C7CBB1AAE7F13002C2D6C /* letseatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letseatTests.swift; sourceTree = "<group>"; };
+		7F98F1151AC1F2ED007042F5 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		7FB725CC1AB495E100129F80 /* letseat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "letseat-Bridging-Header.h"; sourceTree = "<group>"; };
 		7FC73C7B1AC0EF9D005E55B2 /* CreateMoodSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMoodSecondViewController.swift; sourceTree = "<group>"; };
 		7FC73C7D1AC1B791005E55B2 /* CMThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMThirdViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				7F04BA7F1ABB8DBC00A62B19 /* CreateMoodViewController.swift */,
 				7FC73C7B1AC0EF9D005E55B2 /* CreateMoodSecondViewController.swift */,
 				7FC73C7D1AC1B791005E55B2 /* CMThirdViewController.swift */,
+				7F98F1151AC1F2ED007042F5 /* WebViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				7FC8FBDF1AB4B5480024E83D /* DetailViewController.swift in Sources */,
 				7FCE5C181ABCBA4800A68671 /* Restaurant.swift in Sources */,
 				7F04BA801ABB8DBC00A62B19 /* CreateMoodViewController.swift in Sources */,
+				7F98F1161AC1F2ED007042F5 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

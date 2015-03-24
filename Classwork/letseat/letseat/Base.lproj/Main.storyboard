@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="opI-fi-YT4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Sbf-1Q-Mvy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -123,10 +123,14 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="KIF-y6-Tgi"/>
+                    <connections>
+                        <segue destination="2ni-Pj-xhP" kind="show" identifier="showPlace" id="Llw-Pn-mBi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qLS-MM-yYR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1282.5" y="400"/>
+            <point key="canvasLocation" x="2212.5" y="400"/>
         </scene>
         <!--Mood List Table View Controller-->
         <scene sceneID="MbM-zo-X9Z">
@@ -156,12 +160,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEl-Zb-TyT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1357.5" y="1095"/>
+            <point key="canvasLocation" x="1372.5" y="1095"/>
         </scene>
         <!--Places View Controller-->
         <scene sceneID="TR7-y9-K1o">
             <objects>
-                <viewController id="2ni-Pj-xhP" customClass="PlacesViewController" customModule="letseat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="placesVC" id="2ni-Pj-xhP" customClass="PlacesViewController" customModule="letseat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yOE-la-zbt"/>
                         <viewControllerLayoutGuide type="bottom" id="YN5-7p-vZ0"/>
@@ -250,6 +254,7 @@
                                 <exclude reference="Dsj-1N-eC8"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="026-kr-jrY"/>
                                 <exclude reference="MH5-x6-HjF"/>
                                 <exclude reference="ikU-OM-f2E"/>
                                 <exclude reference="r3q-at-JI8"/>
@@ -260,7 +265,6 @@
                                 <exclude reference="CKN-fl-h2W"/>
                                 <exclude reference="isd-hs-ENg"/>
                                 <exclude reference="wo9-Rr-vaa"/>
-                                <exclude reference="026-kr-jrY"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -269,6 +273,7 @@
                                 <include reference="Dsj-1N-eC8"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="026-kr-jrY"/>
                                 <include reference="MH5-x6-HjF"/>
                                 <include reference="ikU-OM-f2E"/>
                                 <include reference="r3q-at-JI8"/>
@@ -279,7 +284,6 @@
                                 <exclude reference="CKN-fl-h2W"/>
                                 <exclude reference="isd-hs-ENg"/>
                                 <include reference="wo9-Rr-vaa"/>
-                                <include reference="026-kr-jrY"/>
                             </mask>
                         </variation>
                     </view>
@@ -300,6 +304,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jge-Kx-Oz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2212.5" y="1095"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="0bc-ap-qKD">
+            <objects>
+                <viewController id="7gT-ww-st7" customClass="WebViewController" customModule="letseat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gjG-m6-Iqx"/>
+                        <viewControllerLayoutGuide type="bottom" id="4oB-6L-wOx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lGg-TW-RqN">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6hb-P3-qod">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6hb-P3-qod" firstAttribute="leading" secondItem="lGg-TW-RqN" secondAttribute="leading" id="8qE-1m-PRd"/>
+                            <constraint firstAttribute="trailing" secondItem="6hb-P3-qod" secondAttribute="trailing" id="IRV-UY-Xt8"/>
+                            <constraint firstItem="6hb-P3-qod" firstAttribute="leading" secondItem="lGg-TW-RqN" secondAttribute="leading" id="Jvr-El-4Dj"/>
+                            <constraint firstAttribute="trailing" secondItem="6hb-P3-qod" secondAttribute="trailing" id="Y8K-uR-j99"/>
+                            <constraint firstItem="6hb-P3-qod" firstAttribute="top" secondItem="lGg-TW-RqN" secondAttribute="top" id="dj5-UW-3ML"/>
+                            <constraint firstItem="6hb-P3-qod" firstAttribute="top" secondItem="gjG-m6-Iqx" secondAttribute="bottom" id="lNf-dJ-mxt"/>
+                            <constraint firstItem="4oB-6L-wOx" firstAttribute="top" secondItem="6hb-P3-qod" secondAttribute="bottom" id="wdj-G0-QbT"/>
+                            <constraint firstItem="4oB-6L-wOx" firstAttribute="top" secondItem="6hb-P3-qod" secondAttribute="bottom" id="ymK-3e-dfr"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="6hb-P3-qod"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="8qE-1m-PRd"/>
+                                <exclude reference="IRV-UY-Xt8"/>
+                                <exclude reference="Jvr-El-4Dj"/>
+                                <exclude reference="Y8K-uR-j99"/>
+                                <exclude reference="dj5-UW-3ML"/>
+                                <exclude reference="lNf-dJ-mxt"/>
+                                <exclude reference="wdj-G0-QbT"/>
+                                <exclude reference="ymK-3e-dfr"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="6hb-P3-qod"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="8qE-1m-PRd"/>
+                                <include reference="IRV-UY-Xt8"/>
+                                <include reference="Jvr-El-4Dj"/>
+                                <exclude reference="Y8K-uR-j99"/>
+                                <exclude reference="dj5-UW-3ML"/>
+                                <include reference="lNf-dJ-mxt"/>
+                                <exclude reference="wdj-G0-QbT"/>
+                                <include reference="ymK-3e-dfr"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="6hb-P3-qod" id="FYb-w8-Qeg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K8s-fD-291" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3751.5" y="1095"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="tls-i6-SYY">
@@ -555,7 +625,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CG5-ZD-yCV" userLabel="Rate View">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arG-o0-VPh">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arG-o0-VPh">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="39"/>
                                                 <color key="textColor" red="0.94509803921568625" green="0.7686274509803922" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1408,6 +1478,7 @@
                         <outlet property="galleryTableView" destination="kfi-h4-hjb" id="vSI-og-W7w"/>
                         <outlet property="ratingImageView" destination="Kih-7h-2mR" id="xnf-C3-73M"/>
                         <outlet property="ratingLabel" destination="arG-o0-VPh" id="YYc-DO-iDA"/>
+                        <segue destination="7gT-ww-st7" kind="show" identifier="web" id="oBX-yA-S9z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJ7-Va-f4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1432,6 +1503,24 @@
             </objects>
             <point key="canvasLocation" x="439.5" y="1095"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qTW-g0-WRp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sbf-1Q-Mvy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NZV-Sb-80K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="opI-fi-YT4" kind="relationship" relationship="rootViewController" id="T4u-Va-i0h"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uyo-cn-eGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1282.5" y="400"/>
+        </scene>
     </scenes>
     <resources>
         <image name="0s" width="164" height="28"/>
@@ -1440,4 +1529,7 @@
         <image name="iPhone" width="20" height="32"/>
         <image name="letseat" width="208" height="98"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Llw-Pn-mBi"/>
+    </inferredMetricsTieBreakers>
 </document>
