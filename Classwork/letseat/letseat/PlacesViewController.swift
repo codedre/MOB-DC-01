@@ -15,7 +15,7 @@ import CoreLocation
 import Foundation
 
 
-class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
@@ -36,6 +36,20 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     var location:baseLocation?
     var menuButtom: HamburgerButton! = nil
     var results:[JSON]? = []
+    
+    var maxOffset = CGFloat(200)
+    var minimumMapSize = CGFloat(70)
+    var maximumMapSize = CGFloat(220)
+    
+    @IBOutlet weak var mapHeightConstraint: NSLayoutConstraint!
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let indexPath = self.resultsTableView.indexPathForSelectedRow()
+        if let selectedIndexPath = indexPath {
+            self.resultsTableView.deselectRowAtIndexPath(selectedIndexPath, animated: true)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +88,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
+
     // draw map to view
     func drawMap() {
         self.mapView.mapType = MKMapType.Standard
@@ -87,8 +102,13 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         self.locman.activityType = CLActivityType.Fitness
         self.locman.startUpdatingLocation()
         
-        let coordinates = self.locman.location
-        self.currentLoc = "\(coordinates.coordinate.latitude),\(coordinates.coordinate.longitude)"
+        var coordinates = self.locman.location
+        if let actualCoordinates = coordinates {
+            self.currentLoc = "\(actualCoordinates.coordinate.latitude),\(actualCoordinates.coordinate.longitude)"
+        } else {
+            coordinates = CLLocation(latitude: CLLocationDegrees(38.904854), longitude: CLLocationDegrees(-77.033940))
+        }
+        
         centerMapOnLocation(coordinates)
         
     }
@@ -310,6 +330,10 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
 
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 88
+    }
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destinationViewController = segue.destinationViewController as DetailViewController
@@ -323,6 +347,18 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
 //            }
 //        }
      
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        let percentageThere = scrollView.contentOffset.y / self.maxOffset
+        println("percentage there = \(percentageThere)")
+        
+        if percentageThere <= 1.0 {
+            let heightConstant = self.maximumMapSize - ((self.maximumMapSize - self.minimumMapSize) * percentageThere)
+            println("height constant = \(heightConstant)")
+            self.mapHeightConstraint.constant = heightConstant
+        }
     }
 
 }

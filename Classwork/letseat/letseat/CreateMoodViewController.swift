@@ -9,15 +9,30 @@
 import UIKit
 import Snap
 
-class CreateMoodViewController: UIViewController {
+class CreateMoodViewController: UIViewController, MoodOptions, FoodOptions {
 
     var wrapper: UIView?
+    var optionVC: CreateMoodSecondViewController?
+    var foodVC: CMThirdViewController?
+    var moodButton = UIButton()
+    var foodButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         drawWrapper()
         drawSentence()
+        
+        self.optionVC = CreateMoodSecondViewController()
+        self.optionVC?.view.hidden = true
+        self.optionVC?.delegate = self
+        self.view.addSubview(optionVC!.view)
+        
+        self.foodVC = CMThirdViewController()
+        self.foodVC?.view.hidden = true
+        self.foodVC?.delegate = self
+        self.view.addSubview(self.foodVC!.view)
+
         
         // Background color
         let gradient = CAGradientLayer()
@@ -33,7 +48,7 @@ class CreateMoodViewController: UIViewController {
     }
     
     func drawWrapper() {
-        self.wrapper = UIView(frame: CGRect(x: 10, y: 80, width: (self.view.frame.size.width)-20, height: 430))
+        self.wrapper = UIView(frame: CGRect(x: 10, y: 50, width: (self.view.frame.size.width)-20, height: 430))
         self.wrapper?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
         self.wrapper?.layer.cornerRadius = 20
         //wrapper.delegate = self
@@ -55,15 +70,16 @@ class CreateMoodViewController: UIViewController {
         self.wrapper!.addSubview(secondline)
         
         
-        var thirdLine = UILabel(frame: CGRect(x: 10, y: 140, width: (self.wrapper!.frame.size.width)-20, height: 28))
-        thirdLine.text = "HAPPY"
-        thirdLine.textColor = UIColor.whiteColor()
-        thirdLine.font = UIFont(name: "AvenirNext-Heavy", size: 33.0)
-        thirdLine.userInteractionEnabled = true
-        self.wrapper!.addSubview(thirdLine)
+        self.moodButton = UIButton(frame: CGRect(x: 10, y: 140, width: (self.wrapper!.frame.size.width)-20, height: 28))
+        self.moodButton.setTitle("HAPPY", forState: .Normal)
+        self.moodButton.addTarget(self, action: "showMoodOptions:", forControlEvents: .TouchUpInside)
+        self.moodButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        self.moodButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 33.0)
+        self.moodButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+        self.wrapper!.addSubview(moodButton)
         
         var fourthline = UILabel(frame: CGRect(x: 10, y: 200, width: (self.wrapper!.frame.size.width)-20, height: 28))
-        fourthline.text = "AND IN THE"
+        fourthline.text = "& IN THE"
         fourthline.textColor = UIColor.blackColor()
         fourthline.font = UIFont(name: "AvenirNext-Heavy", size: 33.0)
         self.wrapper!.addSubview(fourthline)
@@ -80,14 +96,31 @@ class CreateMoodViewController: UIViewController {
         sixthline.font = UIFont(name: "AvenirNext-Heavy", size: 33.0)
         self.wrapper!.addSubview(sixthline)
         
-        var seventhLine = UILabel(frame: CGRect(x: 10, y: 380, width: (self.wrapper!.frame.size.width)-20, height: 28))
-        seventhLine.text = "SPICY"
-        seventhLine.textColor = UIColor.whiteColor()
-        seventhLine.font = UIFont(name: "AvenirNext-Heavy", size: 33.0)
-        seventhLine.userInteractionEnabled = true
-        self.wrapper!.addSubview(seventhLine)
+        self.foodButton = UIButton(frame: CGRect(x: 10, y: 380, width: (self.wrapper!.frame.size.width)-20, height: 28))
+        self.foodButton.setTitle("SPICY", forState: .Normal)
+        self.foodButton.addTarget(self, action: "showFoodOptions:", forControlEvents: .TouchUpInside)
+        self.foodButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        self.foodButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 33.0)
+        self.foodButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+        self.wrapper!.addSubview(foodButton)
     }
     
+    
+    func showMoodOptions(sender:UIButton) {
+        self.optionVC?.view.hidden = false
+    }
+    
+    func showFoodOptions(sender:UIButton) {
+        self.foodVC?.view.hidden = false
+    }
+    
+    func selectedMood(title: String){
+        self.moodButton.setTitle(title, forState: .Normal)
+    }
+    
+    func selectedFood(title: String) {
+        self.foodButton.setTitle(title, forState: .Normal)
+    }
 
 
     override func didReceiveMemoryWarning() {

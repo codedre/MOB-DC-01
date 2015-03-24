@@ -15,7 +15,12 @@ import Haneke
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var galleryTableView: UITableView!
+    @IBOutlet weak var galleryTableView: UITableView! {
+        didSet {
+            self.galleryTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            self.galleryTableView.showsVerticalScrollIndicator = false
+        }
+    }
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var ratingImageView: UIImageView!
     @IBOutlet weak var bottomSquareWrapper: UIView!
@@ -47,7 +52,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             for (var i = 0; i < images.count; ++i)  {
                 var image = images[i]["photo_reference"].string
                 self.location?.details?.pictures[i] = image!
-                println(self.location?.details?.pictures[i])
             }
         }
         
@@ -172,19 +176,18 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func ratingSlideOutToggleButton(sender: UIButton) {
-//        if self.isInBackground {
-//            self.bringBack()
-//        } else {
-//            self.bringToBackground()
-//        }
+        if self.isInBackground {
+            self.bringBack()
+        } else {
+            self.bringToBackground()
+        }
         println("I was tapped")
         self.isInBackground = !self.isInBackground
     }
     
     @IBAction func lunchWebSiteButton(sender: UIButton) {
         if let url = self.results["website"]?.URL {
-            //UIApplication.sharedApplication().openURL(url!)
-            println(url)
+            UIApplication.sharedApplication().openURL(url)
         }
     }
     
@@ -290,9 +293,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return 0
     }
     
-    
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:DetailTableViewCell = tableView.dequeueReusableCellWithIdentifier("picCell", forIndexPath: indexPath) as DetailTableViewCell //?? DetailTableViewCell(style: .Default, reuseIdentifier: "CellIdentifier")
+        cell.clipsToBounds = true
         
         if let images = self.results["photos"]?.arrayValue {
             if let imageString = images[indexPath.row]["photo_reference"].string {

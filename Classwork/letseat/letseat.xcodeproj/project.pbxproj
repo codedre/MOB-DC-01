@@ -17,6 +17,8 @@
 		7F6C7CAD1AAE7F13002C2D6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F6C7CAC1AAE7F13002C2D6C /* Images.xcassets */; };
 		7F6C7CB01AAE7F13002C2D6C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F6C7CAE1AAE7F13002C2D6C /* LaunchScreen.xib */; };
 		7F6C7CBC1AAE7F13002C2D6C /* letseatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C7CBB1AAE7F13002C2D6C /* letseatTests.swift */; };
+		7FC73C7C1AC0EF9D005E55B2 /* CreateMoodSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC73C7B1AC0EF9D005E55B2 /* CreateMoodSecondViewController.swift */; };
+		7FC73C7E1AC1B791005E55B2 /* CMThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC73C7D1AC1B791005E55B2 /* CMThirdViewController.swift */; };
 		7FC8FBDF1AB4B5480024E83D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8FBDE1AB4B5480024E83D /* DetailViewController.swift */; };
 		7FC8FBEB1AB508260024E83D /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FC8FBEA1AB508260024E83D /* BusinessCell.xib */; };
 		7FC8FBED1AB512CC0024E83D /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8FBEC1AB512CC0024E83D /* BusinessCell.swift */; };
@@ -58,6 +60,8 @@
 		7F6C7CBA1AAE7F13002C2D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F6C7CBB1AAE7F13002C2D6C /* letseatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letseatTests.swift; sourceTree = "<group>"; };
 		7FB725CC1AB495E100129F80 /* letseat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "letseat-Bridging-Header.h"; sourceTree = "<group>"; };
+		7FC73C7B1AC0EF9D005E55B2 /* CreateMoodSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMoodSecondViewController.swift; sourceTree = "<group>"; };
+		7FC73C7D1AC1B791005E55B2 /* CMThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMThirdViewController.swift; sourceTree = "<group>"; };
 		7FC8FBDE1AB4B5480024E83D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7FC8FBEA1AB508260024E83D /* BusinessCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessCell.xib; sourceTree = "<group>"; };
 		7FC8FBEC1AB512CC0024E83D /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 				7FE10A181AB3C23A00B09F50 /* PlacesViewController.swift */,
 				7FC8FBDE1AB4B5480024E83D /* DetailViewController.swift */,
 				7F04BA7F1ABB8DBC00A62B19 /* CreateMoodViewController.swift */,
+				7FC73C7B1AC0EF9D005E55B2 /* CreateMoodSecondViewController.swift */,
+				7FC73C7D1AC1B791005E55B2 /* CMThirdViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -360,6 +366,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FF11CAB1AB0BE9400BDB868 /* Mood.swift in Sources */,
+				7FC73C7C1AC0EF9D005E55B2 /* CreateMoodSecondViewController.swift in Sources */,
+				7FC73C7E1AC1B791005E55B2 /* CMThirdViewController.swift in Sources */,
 				7FC8FBED1AB512CC0024E83D /* BusinessCell.swift in Sources */,
 				7F4942C41ABEB18200936614 /* DetailTableViewCell.swift in Sources */,
 				7F6C7CA81AAE7F13002C2D6C /* ViewController.swift in Sources */,
