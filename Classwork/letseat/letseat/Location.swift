@@ -40,3 +40,9 @@ struct Reviews {
     var review: [String] = []
     var time: [Int] = []
 }
+
+struct Days {
+    var view:UIView?
+    var label: UILabel?
+    var constraint: NSLayoutConstraint?
+}

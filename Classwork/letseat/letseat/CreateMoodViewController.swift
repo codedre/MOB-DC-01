@@ -47,25 +47,6 @@ class CreateMoodViewController: UIViewController, MoodOptions, FoodOptions {
         self.view.layer.insertSublayer(gradient, atIndex: 0)
         
         self.navigationController?.navigationBarHidden = true
-        
-        // Parallax ////////////////////////////////
-        
-        // Set vertical effect
-        var verticalMotionEffect: UIInterpolatingMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: .TiltAlongVerticalAxis)
-        verticalMotionEffect.minimumRelativeValue = -10
-        verticalMotionEffect.maximumRelativeValue = 10
-        
-        // Set horizontal effect
-        
-        var horizontalMotionEffect: UIInterpolatingMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: .TiltAlongHorizontalAxis)
-        horizontalMotionEffect.minimumRelativeValue = -10
-        horizontalMotionEffect.maximumRelativeValue = 10
-        
-        // Combination
-        
-        var combinationEffect: UIMotionEffectGroup = UIMotionEffectGroup()
-        combinationEffect.motionEffects = [horizontalMotionEffect, verticalMotionEffect]
-        self.view.addMotionEffect(combinationEffect)
 
     }
     
@@ -158,6 +139,10 @@ class CreateMoodViewController: UIViewController, MoodOptions, FoodOptions {
     
     func showMoodOptions(sender:UIButton) {
         self.optionVC?.view.hidden = false
+        
+        
+
+
     }
     
     func showFoodOptions(sender:UIButton) {

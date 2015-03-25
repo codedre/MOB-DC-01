@@ -10,7 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var loginTextField: UITextField!
+    @IBOutlet weak var logoTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var logoImageView: UIImageView!
+
+
+    @IBOutlet weak var moodTop: NSLayoutConstraint!
+    @IBAction func foodButton(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func moodButton(sender: AnyObject) {
+    }
+    
+    @IBOutlet weak var mood: UIButton!
+    @IBOutlet weak var food: UIButton!
     
     func setBackground(){
         
@@ -44,26 +57,32 @@ class ViewController: UIViewController {
         self.view.addMotionEffect(combinationEffect)
     }
     
-    // Login in textfield
-    func drawTextField() {
-//        self.loginTextField.borderStyle = UITextBorderStyle.None
-        self.loginTextField.placeholder = "Some Text Here"
-        self.loginTextField.textColor = UIColor.blackColor()
-        
-        var bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(0.0, self.loginTextField.frame.size.height - 1, self.loginTextField.frame.size.width, 1.0);
-        bottomBorder.backgroundColor = UIColor.blackColor().CGColor
-        self.loginTextField.layer.addSublayer(bottomBorder)
-
-    
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBackground()
         
-        //setBackground()
-        drawTextField()
+        self.logoTopConstraint.constant = 0
+        self.moodTop.constant = 57
+        self.mood.hidden = false
+        self.food.hidden = false
+        self.mood.layer.cornerRadius = 10.0
+        self.mood.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
         
+        self.food.layer.cornerRadius = 10.0
+        self.food.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
+        
+        self.navigationController?.navigationBarHidden = true
+
+        
+        
+        
+        UIView.animateWithDuration(27677008.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

@@ -20,7 +20,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     
-    let accessKey = "&key=AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs" //GooglePlaces[accessKey]
+    let accessKey = "&key=AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs"
 
     let locman = CLLocationManager()
     let searchRadius: CLLocationDistance = 1000
@@ -28,11 +28,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
     
     
     var navTitle:String?
-    var query:String? {
-        didSet{
-            println(query)
-        }
-    }
+    var query:String?
     var currentLoc = ""
     var distance: [AnyObject] = []
     
@@ -62,14 +58,22 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         navigation()
         self.resultsTableView.registerNib(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-
         
+        // Background color
+        let gradient = CAGradientLayer()
+        gradient.colors = [UIColor.orangeColor().CGColor, UIColor.redColor().CGColor]
+        gradient.startPoint = CGPointMake(0, 0)
+        gradient.endPoint = CGPointMake(0, 1)
+        gradient.locations = [0.4,0.99]
+        gradient.frame = self.view.frame
+        self.view.layer.insertSublayer(gradient, atIndex: 0)
+     
     }
     
     
     // call api
     func googleplaces() {
-        Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/place/textsearch/json?location=\(self.currentLoc)&radius=\(self.searchRadius)&types=food&query=\(self.query!)\(self.accessKey)").responseJSON { (request, response, json, error) in
+        Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/place/textsearch/json?location=\(self.currentLoc)&radius=\(self.searchRadius)&types=food%7Crestaurant&query=\(self.query!)\(self.accessKey)").responseJSON { (request, response, json, error) in
             if (json != nil) {
                 var jsonObj = JSON(json!)
                 if let results = jsonObj["results"].arrayValue as [JSON]? {
@@ -119,9 +123,11 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         
     }
     
-    func setMapMarkers(coordinates: CLLocationCoordinate2D) {
+    func setMapMarkers(coordinates: CLLocationCoordinate2D, name:String) {
         var mapMarker = MKPointAnnotation()
         mapMarker.coordinate = coordinates
+        mapMarker.title = name
+        
         self.mapView.addAnnotation(mapMarker)
         self.mapView.reloadInputViews()
     }
@@ -170,6 +176,11 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
         //coodinates
         if self.results != nil {
             for (var index = 0; index < self.results?.count; ++index) {
+                var name: String?
+                if let placeName = self.results?[index]["name"].string{
+                    name = placeName
+                }
+                
                 if let location = self.results?[index]["geometry"]["location"].dictionary {
                     var lat: CLLocationDegrees?
                     var lng: CLLocationDegrees?
@@ -181,7 +192,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate, UITableViewDele
                         lng = longitude
                     }
                     var coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat!, lng!)
-                    setMapMarkers(coordinates)
+                    setMapMarkers(coordinates, name: name!)
                     
                     // Calculate distance to current location in miles
                     var currentCoordinates:CLLocation = CLLocation(latitude: lat!, longitude: lng!)

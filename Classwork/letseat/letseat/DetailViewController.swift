@@ -19,50 +19,132 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         didSet {
             self.galleryTableView.separatorStyle = UITableViewCellSeparatorStyle.None
             self.galleryTableView.showsVerticalScrollIndicator = false
+            // Background color
+    
+            self.galleryTableView.backgroundColor = UIColor.clearColor()
         }
     }
+    
+    
+    //////// PLEASE FORGIVE ME I RAN OUT OF TIME/////////
+    @IBOutlet weak var hourView: UIView!
+    @IBOutlet weak var leadingDayConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sunHours: UILabel!
+    
+    @IBOutlet weak var modayView: MyCustomButton!
+    @IBOutlet weak var monLeading: NSLayoutConstraint!
+    @IBOutlet weak var monHours: UILabel!
+    
+
+    
+    /////////////////////////////////////////////////////
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var ratingImageView: UIImageView!
-    @IBOutlet weak var bottomSquareWrapper: UIView!
 
     var galleryImage = UIImage()
-    var slideOut: UIView?
-    var slideOutTrailingConstraint:NSLayoutConstraint?
-    var isInBackground: Bool = false
+    var hourIsVisible = false
     
     var location:baseLocation?
     let accessKey = "&key=AIzaSyDCWStgsI4e7f1sUC6zVWF_KU2DRVpAkWs"
     var placeId: String?
     var results:[String: JSON] = [:]
+    var weekday:[String] = []
+    var viewWidth:CGFloat = 0.0
+    var WeekdayVC:WeekDayViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         googleplaces()
-
-        //createSlideOut()
+        
+       self.WeekdayVC = WeekDayViewController()
+       // self.view.addSubview(self.WeekdayVC!.view)
+        
+        // Get inferred width
+        self.viewWidth = self.view.frame.size.width - 165
+        
+        // Background color
+        let gradient = CAGradientLayer()
+        gradient.colors = [UIColor.orangeColor().CGColor, UIColor.redColor().CGColor]
+        gradient.startPoint = CGPointMake(0, 0)
+        gradient.endPoint = CGPointMake(0, 1)
+        gradient.locations = [0.4,0.99]
+        gradient.frame = self.view.frame
+        self.view.layer.insertSublayer(gradient, atIndex: 0)
+        
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: "hourViewTapped:")
+        self.hourView.addGestureRecognizer(tapGesture)
+//
+//        self.monday.view? = self.modayView
+//        self.monday.label? = self.monHours
+//        self.monday.constraint? = self.monLeading
+//        
+//        let monTap = UITapGestureRecognizer(target: self, action: "findbutton:")
+//        self.monday.view?.addGestureRecognizer(monTap)
         
     }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////// SUPER UGLY CODE BLOCK  /////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+//    func findButton(sender: UITapGestureRecognizer) {
+//        if sender.view == self.monday.view {
+//            hourViewTapped(self.monday.view!, label: self.monday.label!, constraint: self.monday.constraint!)
+//        }
+//    }
+//    
+    func hourViewTapped(sender:UITapGestureRecognizer) {
+        if self.hourIsVisible {
+            self.slideToDay()
+        } else {
+            self.slideToHour()
+        }
+        
+        self.hourIsVisible = !self.hourIsVisible
+    }
+    
+    func slideToDay() {
+        self.leadingDayConstraint.constant = 0
+        UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.hourView.layoutIfNeeded()
+            }, completion: nil)
+    }
+    
+    func slideToHour() {
+        self.leadingDayConstraint.constant = -(self.viewWidth)
+        self.sunHours.text = self.weekday.last
+        
+        UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.hourView.layoutIfNeeded()
+            }, completion: nil)
+    }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     
     func getBusinessDetails(){
         if let rating = self.results["rating"]?.float {
             setRatingImage(rating)
         }
         
-        if let images = self.results["photos"]?.arrayValue {
-            for (var i = 0; i < images.count; ++i)  {
-                var image = images[i]["photo_reference"].string
-                self.location?.details?.pictures[i] = image!
-            }
-        }
-        
         if let hours = self.results["opening_hours"]?.dictionary {
             if let weekHours = hours["weekday_text"]?.arrayValue {
                 for day in weekHours {
-                    self.location?.details?.hours[7] = day.string!
+                    var unformatted = day.string!
+                    var result = unformatted._search(" ")
+                    var formatted = unformatted._substringFromIndex(result!+1)
+                    self.weekday.append(formatted!)
                 }
                 
             }
         }
+        
+        
+        
+        
+        
+        /////////////////////////////////////////////////////////////////////
         
         
         if let reviews = self.results["reviews"]?.arrayValue {
@@ -80,7 +162,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func googleplaces() {
-        println(self.placeId)
         Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(self.placeId!)\(self.accessKey)").responseJSON { (request, response, json, error) in
             if (json != nil) {
                 var jsonObj = JSON(json!)
@@ -102,48 +183,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             //println(request)
         }
-    }
-    
-    func update() {
-        
-    }
-    
-    func createSlideOut() {
-        self.slideOut = UIView(frame: CGRectZero)
-        self.slideOut?.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.slideOut?.backgroundColor = UIColor(red: 0.18, green: 0.212, blue: 0.239, alpha: 1)
-        self.slideOut?.layer.shadowColor = UIColor.blackColor().CGColor
-        self.slideOut?.layer.shadowOffset = CGSizeMake(0, -4)
-        self.slideOut?.layer.shadowRadius = 4
-        self.slideOut?.layer.shadowOpacity = 0.25
-        self.view.addSubview(self.slideOut!)
-        
-//        let bg = UIImage(named: "bgwave")
-//        let bgIV = UIImageView(image: bg)
-//        bgIV.frame = CGRectMake(0, 220 - (bg!.size.height / 2), (bg!.size.width / 2), (bg!.size.height) / 2)
-//        self.slideOut?.addSubview(bgIV)
-        
-//        let currentConditions = UIImage(named: "conditions")
-//        let currentConditionsIV = UIImageView(image: currentConditions)
-//        currentConditionsIV.setTranslatesAutoresizingMaskIntoConstraints(false)
-//        self.slideOut?.addSubview(currentConditionsIV)
-//        
-//        currentConditionsIV.snp_makeConstraints { (make) -> () in
-//            make.width.equalTo(currentConditions!.size.width / 2)
-//            make.height.equalTo(currentConditions!.size.height / 2)
-//            make.centerX.equalTo(self.slideOut!.snp_centerX)
-//            make.centerY.equalTo(self.slideOut!.snp_centerY).with.offset(-15)
-//        }
-        
-        self.slideOut?.snp_makeConstraints({ (make) -> () in
-            make.height.equalTo(self.bottomSquareWrapper.snp_height)
-            make.width.equalTo(self.bottomSquareWrapper.snp_width)
-            make.left.equalTo(0)
-            
-        })
-        
-        self.slideOutTrailingConstraint = NSLayoutConstraint(item: self.slideOut!, attribute: .Trailing, relatedBy: .Equal, toItem: self.view, attribute: .Trailing, multiplier: 1.0, constant: 270)
-        self.view.addConstraint(self.slideOutTrailingConstraint!)
     }
     
     // set the correct ratings image to display in the the ratingsImageView
@@ -176,13 +215,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func ratingSlideOutToggleButton(sender: UIButton) {
-        if self.isInBackground {
-            self.bringBack()
-        } else {
-            self.bringToBackground()
-        }
-        println("I was tapped")
-        self.isInBackground = !self.isInBackground
+//        if self.isInBackground {
+//            self.bringBack()
+//        } else {
+//            self.bringToBackground()
+//        }
+//        println("I was tapped")
+//        self.isInBackground = !self.isInBackground
     }
     
     @IBAction func lunchWebSiteButton(sender: UIButton) {
@@ -192,9 +231,29 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func openMapsButton(sender: UIButton) {
-        let mapItem = MKMapItem.mapItemForCurrentLocation()
+        var latitude: Double?
+        var longitude: Double?
         
-        mapItem.openInMapsWithLaunchOptions([MKLaunchOptionsMapTypeKey: MKMapType.Standard.rawValue])
+        if let geometry = self.results["geometry"]?.dictionary {
+            if let location = geometry["location"]?.dictionary{
+                if let lat = location["lat"]?.double {
+                    latitude = lat
+                }
+                if let lng = location["lng"]?.double {
+                    longitude = lng
+                }
+            }
+        }
+        
+        let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+        let mapMarker = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: mapMarker)
+        mapItem.name = self.results["name"]?.string
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        let currentLocationMapItem = MKMapItem.mapItemForCurrentLocation()
+        
+        let openMaps = MKMapItem.openMapsWithItems([currentLocationMapItem, mapItem], launchOptions: launchOptions)
+       // mapItem.openInMapsWithLaunchOptions([MKLaunchOptionsMapTypeKey: MKMapType.Standard.rawValue, MKLaunchOptionsDirectionsModeKey])
 
     }
     
@@ -227,57 +286,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
     
     
-    
-    func bringBack() {
-//        //animation, self.scrollview goes back to scale of 1.0
-//        let scale = POPSpringAnimation(propertyNamed: kPOPViewScaleXY)
-//        scale.springBounciness = 15.0
-//        scale.springSpeed = 5.0
-//        scale.toValue = NSValue(CGPoint: CGPointMake(1, 1))
-//        self.scrollView.pop_addAnimation(scale, forKey: "scroolview.scale")
-//        
-//        self.scrollView.userInteractionEnabled = true
-//        
-//        let overlayOpacity = POPSpringAnimation(propertyNamed: kPOPViewAlpha)
-//        overlayOpacity.springBounciness = 15.0
-//        overlayOpacity.springSpeed = 5.0
-//        overlayOpacity.toValue = 0.0
-//        self.overlay?.pop_addAnimation(overlayOpacity, forKey: "overlay.opacity")
-        
-        // self.slideoutbottomconstraint beacomes = 30
-        let slideoutMove = POPSpringAnimation(propertyNamed: kPOPLayoutConstraintConstant)
-        slideoutMove.springBounciness = 5.0
-        slideoutMove.springSpeed = 15.0
-        slideoutMove.toValue = 270
-        self.slideOutTrailingConstraint?.pop_addAnimation(slideoutMove, forKey: "slideout.translate")
-    }
-    
-    func bringToBackground() {
-//        // animation, self.scrollview goes to a scale of 0.8
-//        let scale = POPSpringAnimation(propertyNamed: kPOPViewScaleXY)
-//        scale.springBounciness = 15.0
-//        scale.springSpeed = 5.0
-//        scale.toValue = NSValue(CGPoint: CGPointMake(0.8, 0.8))
-//        self.scrollView.pop_addAnimation(scale, forKey: "scroolview.scale")
-//        
-//        self.scrollView.userInteractionEnabled = false
-//        
-//        let overlayOpacity = POPSpringAnimation(propertyNamed: kPOPViewAlpha)
-//        overlayOpacity.springBounciness = 15.0
-//        overlayOpacity.springSpeed = 5.0
-//        overlayOpacity.toValue = 0.25
-//        self.overlay?.pop_addAnimation(overlayOpacity, forKey: "overlay.opacity")
-        
-        // self.slideoutbottomconstraint beacomes = 30
-        let slideoutMove = POPSpringAnimation(propertyNamed: kPOPLayoutConstraintConstant)
-        slideoutMove.springBounciness = 5.0
-        slideoutMove.springSpeed = 15.0
-        slideoutMove.toValue = 30
-        self.slideOutTrailingConstraint?.pop_addAnimation(slideoutMove, forKey: "slideout.translate")
-        
-    }
+   
     
 
     override func didReceiveMemoryWarning() {

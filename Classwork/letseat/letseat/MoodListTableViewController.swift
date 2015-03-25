@@ -45,6 +45,8 @@ class MoodListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+
         self.menuButton()
     }
 
